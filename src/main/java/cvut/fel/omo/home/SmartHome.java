@@ -1,10 +1,9 @@
 package cvut.fel.omo.home;
 
+import java.util.List;
+
 public class SmartHome {
-    private String text;
 
+    private List<Floor> floors;
 
-    public void okay() {
-        
-    }
 }
