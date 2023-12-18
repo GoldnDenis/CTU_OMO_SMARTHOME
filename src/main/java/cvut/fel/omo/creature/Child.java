@@ -1,4 +1,12 @@
 package cvut.fel.omo.creature;
 
-public class Child {
+import cvut.fel.omo.appliance.visitors.ApplianceVisitor;
+
+public class Child extends Creature{
+
+    @Override
+    public void accept(ApplianceVisitor visitor) {
+
+    }
+
 }
