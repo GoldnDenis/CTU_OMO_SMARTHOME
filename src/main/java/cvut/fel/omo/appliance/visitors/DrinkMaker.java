@@ -1,10 +1,11 @@
 package cvut.fel.omo.appliance.visitors;
 
+import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;
 import cvut.fel.omo.creature.Child;
 
-public class DrinkMaker implements ApplianceVisitor {
+public class DrinkMaker extends Appliance implements ApplianceVisitor {
     @Override
     public void visitAdult(Adult adult) {
 
