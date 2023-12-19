@@ -12,5 +12,4 @@ public class Child extends Creature{
     public void accept(ApplianceVisitor visitor) {
 
     }
-
 }

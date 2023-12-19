@@ -1,6 +1,6 @@
 package cvut.fel.omo.appliance.visitors;
 
-import cvut.fel.omo.appliance.APPLIANCE_CONSUMPTION;
+import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.creature.Adult;
@@ -14,7 +14,10 @@ public class Stove extends Appliance implements ApplianceVisitor {
         counter++;
 
         this.name = "Stove";
-        this.consumption = new ResourceConsumption(APPLIANCE_CONSUMPTION.STOVE_ELEC_PER_SEC.getValue(), APPLIANCE_CONSUMPTION.STOVE_WATER_PER_SEC.getValue());
+        this.consumption = new ResourceConsumption(
+                APPLIANCE_CONSUMP_INFO.STOVE_ELEC_PER_SEC.getValue(),
+                APPLIANCE_CONSUMP_INFO.STOVE_WATER_PER_SEC.getValue(),
+                APPLIANCE_CONSUMP_INFO.STOVE_SESSION.getValue());
         this.id = counter;
     }
 

@@ -1,7 +1,7 @@
 package cvut.fel.omo.appliance.state;
 
 import cvut.fel.omo.appliance.ApplianceAPI;
-import cvut.fel.omo.appliance.CONSUMPTION_PERCENTAGE;
+import cvut.fel.omo.appliance.constants.STATE_CONSUMP_PERCENTAGE;
 import cvut.fel.omo.system.Logging;
 import cvut.fel.omo.system.MessageConvertor;
 
@@ -24,7 +24,7 @@ public class Off extends ApplianceState {
 
     @Override
     public void turnOn() {
-        applianceAPI.setConsumptionPercent(CONSUMPTION_PERCENTAGE.FULL_CONSUMPTION.getPercent());
+        applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.FULL_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Active(applianceAPI));
         Logging.log(Level.INFO, MessageConvertor.turnOnMsg(applianceAPI.toSting()));
     }

@@ -1,6 +1,6 @@
 package cvut.fel.omo.appliance.visitors;
 
-import cvut.fel.omo.appliance.APPLIANCE_CONSUMPTION;
+import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.creature.Adult;
@@ -14,7 +14,10 @@ public class DrinkMaker extends Appliance implements ApplianceVisitor {
         counter++;
 
         this.name = "Drink Maker";
-        this.consumption = new ResourceConsumption(APPLIANCE_CONSUMPTION.DRINKMAKER_ELEC_PER_SEC.getValue(), APPLIANCE_CONSUMPTION.DRINKMAKER_WATER_PER_SEC.getValue());
+        this.consumption = new ResourceConsumption(
+                APPLIANCE_CONSUMP_INFO.DRINKMAKER_ELEC_PER_SEC.getValue(),
+                APPLIANCE_CONSUMP_INFO.DRINKMAKER_WATER_PER_SEC.getValue(),
+                APPLIANCE_CONSUMP_INFO.DRINKMAKER_REQ_TIME.getValue());
         this.id = counter;
     }
 

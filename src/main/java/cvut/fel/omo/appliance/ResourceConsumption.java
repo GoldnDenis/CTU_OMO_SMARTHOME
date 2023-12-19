@@ -9,14 +9,16 @@ public class ResourceConsumption {
 
     private final int requiredElectricity;
     private final int requiredWater;
+    private final int requiredTime;
 
-    public ResourceConsumption(int requiredElectricity, int requiredWater) {
+    public ResourceConsumption(int requiredElectricity, int requiredWater, int requiredTime) {
         this.consumedElectricity = 0;
         this.consumedWater = 0;
         this.consumedTime = 0;
 
         this.requiredElectricity = requiredElectricity;
         this.requiredWater = requiredWater;
+        this.requiredTime = requiredTime;
     }
 
     @Setter

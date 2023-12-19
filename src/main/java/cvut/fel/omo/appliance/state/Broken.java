@@ -1,7 +1,7 @@
 package cvut.fel.omo.appliance.state;
 
 import cvut.fel.omo.appliance.ApplianceAPI;
-import cvut.fel.omo.appliance.CONSUMPTION_PERCENTAGE;
+import cvut.fel.omo.appliance.constants.STATE_CONSUMP_PERCENTAGE;
 import cvut.fel.omo.system.Logging;
 import cvut.fel.omo.system.MessageConvertor;
 
@@ -31,7 +31,7 @@ public class Broken extends ApplianceState {
 
     @Override
     public void fix() {
-        applianceAPI.setConsumptionPercent(CONSUMPTION_PERCENTAGE.NO_CONSUMPTION.getPercent());
+        applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.NO_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Off(applianceAPI));
         Logging.log(Level.INFO, MessageConvertor.fixMsg(applianceAPI.toSting()));
     }
