@@ -12,5 +12,4 @@ public class Floor {
     private int id;
     private List<Room> rooms;
 
-
 }
