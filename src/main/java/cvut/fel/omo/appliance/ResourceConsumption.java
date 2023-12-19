@@ -1,22 +1,30 @@
 package cvut.fel.omo.appliance;
 
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 public class ResourceConsumption {
-    private double electricity;
-    private double water;
-    private double time;
+    private double consumedElectricity;
+    private double consumedWater;
+    private double consumedTime;
 
-    public double getElectricity(double percent) {
-        return electricity * percent;
+    private final int requiredElectricity;
+    private final int requiredWater;
+
+    public ResourceConsumption(int requiredElectricity, int requiredWater) {
+        this.consumedElectricity = 0;
+        this.consumedWater = 0;
+        this.consumedTime = 0;
+
+        this.requiredElectricity = requiredElectricity;
+        this.requiredWater = requiredWater;
     }
 
-    public double getWater(double percent) {
-        return water * percent;
-    }
+    @Setter
+    private double percent;
 
-    public double getTime(double percent) {
-        return time * percent;
+    public void update(int secondsElapsed) {
+        consumedTime += secondsElapsed;
+        consumedElectricity += secondsElapsed * (requiredElectricity * percent);
+        consumedWater += secondsElapsed * (requiredWater * percent);
     }
 }
