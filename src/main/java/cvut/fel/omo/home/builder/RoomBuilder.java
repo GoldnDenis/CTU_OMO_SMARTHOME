@@ -23,16 +23,19 @@ public class RoomBuilder {
     }
 
 
-    public void id(int id) {
+    public RoomBuilder id(int id) {
         this.id = id;
+        return this;
     }
 
-    public void type(String type) {
+    public RoomBuilder type(String type) {
         this.type = type;
+        return this;
     }
 
-    public void addAppliance(Optional<Appliance> appliance) {
+    public RoomBuilder addAppliance(Optional<Appliance> appliance) {
         appliance.ifPresent(value -> this.appliances.add(value));
+        return this;
     }
 
     public Room build() {
