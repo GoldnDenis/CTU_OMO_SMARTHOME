@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Floor {
 
-    private int floorNum;
+    private int id;
     private List<Room> rooms;
 
 
