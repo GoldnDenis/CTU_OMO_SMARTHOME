@@ -5,12 +5,14 @@ import cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cvut.fel.omo.appliance.visitors.Computer;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.creature.factory.CreatureFactory;
+import cvut.fel.omo.system.Logging;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 
 @SpringBootApplication
 public class SmartHomeApplication {
