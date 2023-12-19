@@ -14,4 +14,8 @@ public class ApplianceAPI {
     public void setConsumptionPercent(double percent) {
         appliance.setConsumptionPercent(percent);
     }
+
+    public String toSting() {
+        return appliance.toString();
+    }
 }
