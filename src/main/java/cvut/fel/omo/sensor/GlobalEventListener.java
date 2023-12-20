@@ -1,5 +1,6 @@
-package cvut.fel.omo.appliance;
+package cvut.fel.omo.sensor;
 
+import cvut.fel.omo.appliance.ApplianceAPI;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
 public class GlobalEventListener {
@@ -9,7 +10,7 @@ public class GlobalEventListener {
         this.appliance = appliance;
     }
 
-    public void reactToEvent(GLOBAL_EVENT event) {
+    public void update(GLOBAL_EVENT event) {
         if (event.equals(GLOBAL_EVENT.ELECTRICITY_SHUT_OFF)) {
             // todo: some reaction - off
         } else if (event.equals(GLOBAL_EVENT.WATER_SHUT_OFF)) {

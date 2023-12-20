@@ -9,7 +9,8 @@ public class RoomDirector {
     public void buildKitchen(RoomBuilder builder) {
         builder.id(counter++)
                 .type("Kitchen")
-                .addAppliance(factory.createAppliance("Stove"));
+                .addAppliance(factory.createAppliance("Stove"))
+                .build();
     }
 
 }

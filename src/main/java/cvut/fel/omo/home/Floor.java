@@ -24,6 +24,7 @@ public class Floor {
         this.director = new RoomDirector();
     }
 
+    //todo: change the builder logic
     public void addKitchen() {
         builder = new RoomBuilder();
         director.buildKitchen(builder);

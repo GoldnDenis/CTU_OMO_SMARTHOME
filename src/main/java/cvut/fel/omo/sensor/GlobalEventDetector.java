@@ -1,6 +1,5 @@
 package cvut.fel.omo.sensor;
 
-import cvut.fel.omo.appliance.GlobalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
 import java.util.ArrayList;
@@ -22,6 +21,6 @@ public class GlobalEventDetector {
     }
 
     public void notifyAll(GLOBAL_EVENT event) {
-        listeners.forEach(listener -> listener.reactToEvent(event));
+        listeners.forEach(listener -> listener.update(event));
     }
 }

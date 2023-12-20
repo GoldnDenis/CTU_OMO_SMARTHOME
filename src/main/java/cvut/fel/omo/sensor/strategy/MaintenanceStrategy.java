@@ -1,4 +1,4 @@
 package cvut.fel.omo.sensor.strategy;
 
-public interface SensorStrategy {
+public interface MaintenanceStrategy {
 }

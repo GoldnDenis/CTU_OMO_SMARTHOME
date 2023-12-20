@@ -34,9 +34,5 @@ public class SmartHomeApplication {
 		for (Optional<Creature> creature: list) {
 			creature.ifPresent(Creature::printId);
 		}
-
-//		System.out.println("IN-PROGRESS");
 	}
-
-
 }
