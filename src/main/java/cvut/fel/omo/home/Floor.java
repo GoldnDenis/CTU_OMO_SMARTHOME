@@ -12,11 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Floor {
 
-    private RoomDirector director;
-    private RoomBuilder builder;
-
     private int id;
     private List<Room> rooms;
+
+    private RoomDirector director;
 
     public Floor(int id) {
         this.id = id;
@@ -25,10 +24,10 @@ public class Floor {
     }
 
     //todo: change the builder logic
-    public void addKitchen() {
-        builder = new RoomBuilder();
-        director.buildKitchen(builder);
-        rooms.add(builder.build());
+    private void addKitchen() {
+        rooms.add(
+                director.buildKitchen(new RoomBuilder())
+        );
     }
 
 

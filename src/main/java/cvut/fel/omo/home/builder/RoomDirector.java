@@ -1,15 +1,63 @@
 package cvut.fel.omo.home.builder;
 
 import cvut.fel.omo.appliance.factory.ApplianceFactory;
+import cvut.fel.omo.home.ROOM_TYPE;
+import cvut.fel.omo.home.Room;
 
 public class RoomDirector {
     private int counter = 1;
-    private ApplianceFactory factory = new ApplianceFactory();
+    private final ApplianceFactory factory = new ApplianceFactory();
 
-    public void buildKitchen(RoomBuilder builder) {
-        builder.id(counter++)
-                .type("Kitchen")
+    public Room buildKitchen(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.KITCHEN)
                 .addAppliance(factory.createAppliance("Stove"))
+                .addAppliance(factory.createAppliance("Drink Maker"))
+                .addAppliance(factory.createAppliance("Refrigerator"))
+                .addAppliance(factory.createAppliance("Food Dispenser"))
+                .build();
+    }
+
+    public Room buildLivingRoom(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.LIVING_ROOM)
+                .addAppliance(factory.createAppliance("TV"))
+                .addAppliance(factory.createAppliance("Smart Speaker"))
+                .build();
+    }
+
+    public Room buildOffice(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.OFFICE)
+                .addAppliance(factory.createAppliance("Computer"))
+                .addAppliance(factory.createAppliance("Smart Speaker"))
+                .build();
+    }
+
+    public Room buildBedroom(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.BEDROOM)
+                .addAppliance(factory.createAppliance("TV"))
+                .addAppliance(factory.createAppliance("Smart Speaker"))
+                .addAppliance(factory.createAppliance("Computer"))
+                .build();
+    }
+
+    public Room buildToilet(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.TOILET)
+                .build();
+    }
+
+    public Room buildShowerRoom(RoomBuilder builder) {
+        return builder
+                .id(counter++)
+                .type(ROOM_TYPE.SHOWER_ROOM)
                 .build();
     }
 

@@ -9,7 +9,7 @@ public class Room {
 
     private int id;
 
-    private String type;
+    private ROOM_TYPE type;
 
     private List<Appliance> appliances;
 
@@ -19,5 +19,11 @@ public class Room {
         this.appliances = builder.getAppliances();
     }
 
-
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

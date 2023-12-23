@@ -1,6 +1,7 @@
 package cvut.fel.omo.home.builder;
 
 import cvut.fel.omo.appliance.Appliance;
+import cvut.fel.omo.home.ROOM_TYPE;
 import cvut.fel.omo.home.Room;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ public class RoomBuilder {
 
     private int id;
 
-    private String type;
+    private ROOM_TYPE type;
 
     private List<Appliance> appliances;
 
@@ -28,7 +29,7 @@ public class RoomBuilder {
         return this;
     }
 
-    public RoomBuilder type(String type) {
+    public RoomBuilder type(ROOM_TYPE type) {
         this.type = type;
         return this;
     }
