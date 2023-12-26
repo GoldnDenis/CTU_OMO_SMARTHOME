@@ -6,7 +6,7 @@ import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;
 import cvut.fel.omo.creature.Child;
 
-public class SmartSpeaker extends ApplianceAPI implements ApplianceVisitor {
+public class SmartSpeaker extends ApplianceAPI {
 
     public SmartSpeaker() {
         super();
@@ -33,6 +33,11 @@ public class SmartSpeaker extends ApplianceAPI implements ApplianceVisitor {
 
     @Override
     public void visitAnimal(Animal animal) {
+
+    }
+
+    @Override
+    void react() {
 
     }
 }

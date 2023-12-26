@@ -6,7 +6,7 @@ import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;
 import cvut.fel.omo.creature.Child;
 
-public class Refrigerator extends ApplianceAPI implements ApplianceVisitor {
+public class Refrigerator extends ApplianceAPI {
 
     public Refrigerator() {
         super();
@@ -33,6 +33,11 @@ public class Refrigerator extends ApplianceAPI implements ApplianceVisitor {
 
     @Override
     public void visitAnimal(Animal animal) {
+
+    }
+
+    @Override
+    void react() {
 
     }
 }

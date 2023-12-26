@@ -1,25 +1,41 @@
 package cvut.fel.omo.system;
 
+import cvut.fel.omo.appliance.state.Active;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
 import cvut.fel.omo.creature.Creature;
+import cvut.fel.omo.home.Floor;
+import cvut.fel.omo.home.Room;
+import cvut.fel.omo.home.SmartHome;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Simulation {
 
     public void run() {
-        // read Config
-        List<Creature> creatures = new ArrayList<>();
-        // setup home
-        // load creatures
+        Config config = new Config();
+        SmartHome smartHome = config.setUpHome();
+        int simulationPeriod = config.getPeriod();
 
-        int reqDays = 24; // tmp - to-read from config
-        for (int day = 1; day <= reqDays; ++day) {
+        for (int day = 1; day <= simulationPeriod; ++day) {
             for (int hour = 0; hour < 24; ++hour) {
 //                System.out.println("Day " + day + " - " + hour + ":00");
-                creatures.stream()
-                        .filter( Creature::getIsBusy )
-                        .forEach( creature -> creature.doSomething() );
+                Stream<Room> roomStream = smartHome.getFloors().stream()
+                        .flatMap(floor -> floor.getRooms().stream());
+
+                Stream<Creature> creatureStream = roomStream
+                        .flatMap(room -> room.getCreatures().stream())
+                        .filter(Creature::getIsBusy)
+                        .forEach(creature -> creature.accept(
+                                roomStream.flatMap(room -> room.getAppliances().stream())
+                                        .
+                        ));
+                Stream<ApplianceAPI> applianceStream = roomStream
+                        .flatMap(room -> room.getAppliances().stream())
+                        .filter(appliance -> ! (appliance.getState() instanceof Active));
+
                 }
             }
         }

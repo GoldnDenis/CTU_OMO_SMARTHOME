@@ -6,7 +6,7 @@ import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;
 import cvut.fel.omo.creature.Child;
 
-public class DrinkMaker extends ApplianceAPI implements ApplianceVisitor {
+public class DrinkMaker extends ApplianceAPI {
 
     public DrinkMaker() {
         super();
@@ -33,6 +33,11 @@ public class DrinkMaker extends ApplianceAPI implements ApplianceVisitor {
 
     @Override
     public void visitAnimal(Animal animal) {
+
+    }
+
+    @Override
+    void react() {
 
     }
 }
