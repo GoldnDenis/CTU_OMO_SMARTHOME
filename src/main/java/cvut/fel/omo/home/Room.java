@@ -1,6 +1,7 @@
 package cvut.fel.omo.home;
 
 import cvut.fel.omo.appliance.Appliance;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
 import cvut.fel.omo.home.builder.RoomBuilder;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class Room {
 
     private ROOM_TYPE type;
 
-    private List<Appliance> appliances;
+    private List<ApplianceAPI> appliances;
 
     public Room(RoomBuilder builder) {
         this.id = builder.getId();
