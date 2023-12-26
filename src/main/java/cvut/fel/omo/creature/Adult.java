@@ -1,6 +1,6 @@
 package cvut.fel.omo.creature;
 
-import cvut.fel.omo.appliance.visitors.ApplianceVisitor;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceVisitor;
 
 public class Adult extends Creature{
 

@@ -1,14 +1,18 @@
-package cvut.fel.omo.appliance;
+package cvut.fel.omo.appliance.visitorAPI;
 
+import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.state.ApplianceState;
 import cvut.fel.omo.appliance.state.Off;
 
-public class ApplianceAPI {
-    private final Appliance appliance;
-    private ApplianceState state;
+public abstract class ApplianceAPI {
+    protected static int counter = 1;
 
-    public ApplianceAPI(Appliance appliance) {
-        this.appliance = appliance;
+    protected final Appliance appliance;
+    protected ApplianceState state;
+
+    public ApplianceAPI() {
+        this.appliance = new Appliance();
+        appliance.setId(counter++);
         this.state = new Off(this);
     }
 
@@ -23,4 +27,5 @@ public class ApplianceAPI {
     public String toSting() {
         return appliance.toString();
     }
+
 }

@@ -1,6 +1,6 @@
 package cvut.fel.omo.creature;
 
-import cvut.fel.omo.appliance.visitors.ApplianceVisitor;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceVisitor;
 
 import lombok.Getter;
 
@@ -19,7 +19,7 @@ public abstract class Creature {
     }
 
     public void printId() {
-        System.out.println(toString());
+        System.out.println(this);
     }
 
     @Override

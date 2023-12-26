@@ -1,6 +1,6 @@
 package cvut.fel.omo.sensor;
 
-import cvut.fel.omo.appliance.ApplianceAPI;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
 public class GlobalEventListener {

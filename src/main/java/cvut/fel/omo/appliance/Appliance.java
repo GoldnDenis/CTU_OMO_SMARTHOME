@@ -1,9 +1,11 @@
 package cvut.fel.omo.appliance;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public abstract class Appliance {
+@Setter
+public class Appliance {
 
     protected int id;
     protected String name;

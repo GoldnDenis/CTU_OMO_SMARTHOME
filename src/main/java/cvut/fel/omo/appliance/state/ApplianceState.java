@@ -1,6 +1,6 @@
 package cvut.fel.omo.appliance.state;
 
-import cvut.fel.omo.appliance.ApplianceAPI;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

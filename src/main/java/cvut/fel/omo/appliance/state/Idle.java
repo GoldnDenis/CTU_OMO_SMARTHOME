@@ -1,6 +1,6 @@
 package cvut.fel.omo.appliance.state;
 
-import cvut.fel.omo.appliance.ApplianceAPI;
+import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
 import cvut.fel.omo.appliance.constants.STATE_CONSUMP_PERCENTAGE;
 import cvut.fel.omo.system.Logging;
 import cvut.fel.omo.system.MessageConvertor;
