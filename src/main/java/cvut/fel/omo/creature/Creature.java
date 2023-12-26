@@ -3,6 +3,7 @@ package cvut.fel.omo.creature;
 import cvut.fel.omo.appliance.visitorAPI.ApplianceVisitor;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public abstract class Creature {
@@ -11,11 +12,15 @@ public abstract class Creature {
     protected int id;
     protected String name;
 
+    @Setter
+    protected Boolean isBusy;
+
     protected Creature(String name) {
         counter++;
 
         this.id = counter;
         this.name = name;
+        this.isBusy = false;
     }
 
     public void printId() {
