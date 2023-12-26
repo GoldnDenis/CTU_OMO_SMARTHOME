@@ -1,6 +1,7 @@
 package cvut.fel.omo.home.builder;
 
 import cvut.fel.omo.appliance.Appliance;
+import cvut.fel.omo.appliance.ApplianceAPI;
 import cvut.fel.omo.home.ROOM_TYPE;
 import cvut.fel.omo.home.Room;
 import lombok.Builder;
@@ -17,7 +18,7 @@ public class RoomBuilder {
 
     private ROOM_TYPE type;
 
-    private List<Appliance> appliances;
+    private List<ApplianceAPI> appliances;
 
     public RoomBuilder() {
         appliances = new ArrayList<>();
@@ -34,7 +35,7 @@ public class RoomBuilder {
         return this;
     }
 
-    public RoomBuilder addAppliance(Optional<Appliance> appliance) {
+    public RoomBuilder addAppliance(Optional<ApplianceAPI> appliance) {
         appliance.ifPresent(value -> this.appliances.add(value));
         return this;
     }
