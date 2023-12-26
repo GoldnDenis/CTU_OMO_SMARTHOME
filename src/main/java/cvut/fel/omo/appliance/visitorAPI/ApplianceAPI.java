@@ -28,4 +28,26 @@ public abstract class ApplianceAPI {
         return appliance.toString();
     }
 
+    public void breakDown() {
+        this.state.breakDown();
+    }
+
+    public void sleep() {
+        this.state.sleep();
+    }
+
+    public void turnOn() {
+        this.state.turnOn();
+    }
+
+    public void turnOff() {
+        this.state.turnOff();
+    }
+
+    public void fix() {
+        this.state.fix();
+    }
+
+    abstract void react();
+
 }

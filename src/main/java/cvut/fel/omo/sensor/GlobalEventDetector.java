@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalEventDetector {
+
     private final List<GlobalEventListener> listeners;
 
     public GlobalEventDetector() {
@@ -23,4 +24,5 @@ public class GlobalEventDetector {
     public void notifyAll(GLOBAL_EVENT event) {
         listeners.forEach(listener -> listener.update(event));
     }
+
 }
