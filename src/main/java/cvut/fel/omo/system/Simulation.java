@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 public class Simulation {
 
     public void run() {
-        Config config = new Config();
+        ConfigReader config = new ConfigReader();
         SmartHome smartHome = config.setUpHome();
-        int simulationPeriod = config.getPeriod();
+        int simDuration = config.getDuration();
 
-        for (int day = 1; day <= simulationPeriod; ++day) {
+        for (int day = 1; day <= simDuration; ++day) {
             for (int hour = 0; hour < 24; ++hour) {
 //                System.out.println("Day " + day + " - " + hour + ":00");
                 Stream<Room> roomStream = smartHome.getFloors().stream()

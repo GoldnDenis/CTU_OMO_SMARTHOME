@@ -1,9 +1,12 @@
 package cvut.fel.omo.system;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cvut.fel.omo.home.SmartHome;
 
-public class Config {
+import java.io.File;
+import java.io.IOException;
 
+public class ConfigReader {
 //    private static Config instance;
 //
 //    private Config() {
@@ -16,9 +19,18 @@ public class Config {
 //        return instance;
 //    }
 
-    public static Config readJson(String filePath) {
-        //todo
-        return null;
+    private ImmutableConfig config;
+
+    public boolean readJson(String filePath) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            config = objectMapper.readValue(new File(filePath), ImmutableConfig.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
     }
 
     public SmartHome setUpHome() {
@@ -26,7 +38,7 @@ public class Config {
         return null;
     }
 
-    public int getPeriod() {
+    public int getDuration() {
         //TODO: Idk, get some period, from somewhere
         return 0;
     }
