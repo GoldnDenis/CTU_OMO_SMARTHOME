@@ -1,14 +1,11 @@
 package cvut.fel.omo.sensor;
 
-import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
-
-import java.util.logging.Level;
 
 public class GlobalEventListener implements EventListener {
 
-    private ApplianceAPI appliance;
+    private final ApplianceAPI appliance;
 
     public GlobalEventListener(ApplianceAPI appliance) {
         this.appliance = appliance;
@@ -16,20 +13,10 @@ public class GlobalEventListener implements EventListener {
 
     @Override
     public void update(GLOBAL_EVENT event) {
-        switch (event) {
-            case ELECTRICITY_SHUT_OFF
-                    -> appliance.turnOff();
-            case WATER_SHUT_OFF
-                    -> appliance.sleep();
-            case NIGHT_FELL -> {
-                // todo: some reaction
-            }
-            case SUN_HAS_RISEN_UP -> {
-                // todo: some reaction
-            }
-            case NON_SATISFYING_TEMP -> {
-                // todo: some reaction
-            }
+        if (event == GLOBAL_EVENT.ELECTRICITY_SHUT_OFF) {
+            appliance.turnOff();
+        } else {
+            appliance.react(event);
         }
     }
 

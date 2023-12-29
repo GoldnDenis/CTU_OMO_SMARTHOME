@@ -1,7 +1,7 @@
 package cvut.fel.omo.appliance.factory;
 
-import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
-import cvut.fel.omo.appliance.visitorAPI.*;
+import cvut.fel.omo.appliance.API.ApplianceAPI;
+import cvut.fel.omo.appliance.API.*;
 import cvut.fel.omo.system.Logging;
 
 import java.util.Optional;

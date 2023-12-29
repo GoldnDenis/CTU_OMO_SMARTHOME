@@ -1,15 +1,11 @@
 package cvut.fel.omo.system;
 
 import cvut.fel.omo.appliance.state.Active;
-import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.creature.Creature;
-import cvut.fel.omo.home.Floor;
 import cvut.fel.omo.home.Room;
 import cvut.fel.omo.home.SmartHome;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Simulation {

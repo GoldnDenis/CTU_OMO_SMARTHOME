@@ -1,4 +1,4 @@
-package cvut.fel.omo.appliance.visitorAPI;
+package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.state.ApplianceState;
@@ -6,7 +6,8 @@ import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;
 import cvut.fel.omo.creature.Child;
-import cvut.fel.omo.creature.Creature;
+import cvut.fel.omo.event.GLOBAL_EVENT;
+import cvut.fel.omo.system.RandomGenerator;
 import lombok.Getter;
 
 public abstract class ApplianceAPI implements ApplianceVisitor{
@@ -46,7 +47,7 @@ public abstract class ApplianceAPI implements ApplianceVisitor{
         appliance.setConsumptionPercent(percent);
     }
 
-    public String toSting() {
+    public String toString() {
         return appliance.toString();
     }
 
@@ -70,6 +71,12 @@ public abstract class ApplianceAPI implements ApplianceVisitor{
         this.state.fix();
     }
 
-    abstract void react();
+    public abstract void react(GLOBAL_EVENT event);
+
+    protected void breakingDownChance(double chance) {
+        if (RandomGenerator.hasHappened(chance)) {
+            this.breakDown();
+        }
+    }
 
 }

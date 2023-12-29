@@ -1,5 +1,7 @@
 package cvut.fel.omo.system;
 
+import cvut.fel.omo.home.SmartHome;
+
 public class Config {
 
 //    private static Config instance;
@@ -17,5 +19,15 @@ public class Config {
     public static Config readJson(String filePath) {
         //todo
         return null;
+    }
+
+    public SmartHome setUpHome() {
+        //TODO: Set up home from read json
+        return null;
+    }
+
+    public int getPeriod() {
+        //TODO: Idk, get some period, from somewhere
+        return 0;
     }
 }

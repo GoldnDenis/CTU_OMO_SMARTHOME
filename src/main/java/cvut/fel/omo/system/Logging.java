@@ -11,8 +11,8 @@ public class Logging {
         logger.log(level, message);
     }
 
-//    public static void log(Level level, String message, String source) {
-//        String logText = '"' + message + '"' + " from " + source;
-//        logger.log(level, logText);
-//    }
+    public static void log(Level level, String message, String source) {
+        String logText = '"' + message + '"' + " from " + source;
+        logger.log(level, logText);
+    }
 }

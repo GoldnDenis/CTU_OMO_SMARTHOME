@@ -1,4 +1,4 @@
-package cvut.fel.omo.appliance.visitorAPI;
+package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.creature.Adult;
 import cvut.fel.omo.creature.Animal;

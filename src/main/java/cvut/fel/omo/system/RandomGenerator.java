@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    public static int gemerateNumber(int boumd) {
-        return new Random().nextInt(boumd);
+    public static int generateNumber(int bound) {
+        return new Random().nextInt(bound);
     }
 
     public static boolean hasHappened(double percent) {
         if ( percent <= 0 ) return false;
         if ( percent >= 100 ) return true;
 
-        return gemerateNumber(100) >= percent;
+        return generateNumber(100) >= percent;
     }
 }

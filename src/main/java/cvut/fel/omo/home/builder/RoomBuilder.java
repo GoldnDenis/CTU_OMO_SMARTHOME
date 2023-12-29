@@ -1,6 +1,6 @@
 package cvut.fel.omo.home.builder;
 
-import cvut.fel.omo.appliance.visitorAPI.ApplianceAPI;
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.home.ROOM_TYPE;
 import cvut.fel.omo.home.Room;
 import lombok.Getter;
