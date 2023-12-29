@@ -2,7 +2,6 @@ package cvut.fel.omo;
 
 import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.factory.ApplianceFactory;
-import cvut.fel.omo.appliance.visitors.Computer;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.creature.factory.CreatureFactory;
 import cvut.fel.omo.system.Logging;

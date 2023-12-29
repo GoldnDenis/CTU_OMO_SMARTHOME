@@ -1,6 +1,7 @@
 package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.appliance.Appliance;
+import cvut.fel.omo.appliance.state.Active;
 import cvut.fel.omo.appliance.state.ApplianceState;
 import cvut.fel.omo.appliance.state.Broken;
 import cvut.fel.omo.appliance.state.Off;
@@ -81,6 +82,10 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public boolean isBroken() {
         return this.state instanceof Broken;
+    }
+
+    public boolean isActive() {
+        return this.state instanceof Active;
     }
 
     protected void breakingDownChance(double chance) {

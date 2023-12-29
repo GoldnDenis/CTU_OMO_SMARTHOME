@@ -3,9 +3,12 @@ package cvut.fel.omo.creature;
 import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
+import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.home.Room;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Optional;
 
 @Getter
 public class Creature {
@@ -29,6 +32,15 @@ public class Creature {
         this.id = counter;
         this.name = name;
         this.busyFor = 0;
+    }
+
+    public int getApplianceNumInRoom() {
+        return curLocation.getAppliancesSize();
+    }
+
+    public Optional<ApplianceAPI> getApplianceById(int id) {
+        if ( id > curLocation.getAppliancesSize() || id < 0 ) return Optional.empty();
+        return Optional.of(curLocation.getAppliances().get(id));
     }
 
     public void printId() {

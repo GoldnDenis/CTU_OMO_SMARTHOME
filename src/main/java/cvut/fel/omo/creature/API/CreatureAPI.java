@@ -1,8 +1,12 @@
 package cvut.fel.omo.creature.API;
 
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.home.Room;
+import cvut.fel.omo.system.RandomGenerator;
+
+import java.util.Optional;
 
 public abstract class CreatureAPI {
 
@@ -13,6 +17,21 @@ public abstract class CreatureAPI {
     }
 
     public abstract void accept(ApplianceVisitor visitor);
+
+    public void interact() {
+        int applianceId = -1;
+        while (true) {
+            applianceId = RandomGenerator.generateNumber(creature.getApplianceNumInRoom());
+            if (creature.getApplianceById(applianceId).isPresent()) {
+                ApplianceAPI appliance = creature.getApplianceById(applianceId).get();
+
+                if ( !appliance.isActive() && !appliance.isBroken()) {
+                    accept(appliance);
+                }
+            }
+
+        }
+    }
 
     public void changeLocation(Room room) {
         this.creature.setCurLocation(room);

@@ -24,6 +24,7 @@ public class SmartHome {
     public void addNewRoom(String name) {
         switch (name) {
             case "Kitchen" -> rooms.add(director.buildKitchen(new RoomBuilder()));
+            case "Living Room" -> rooms.add(director.buildLivingRoom(new RoomBuilder()));
             case "Bedroom" -> rooms.add(director.buildBedroom(new RoomBuilder()));
             case "Office" -> rooms.add(director.buildOffice(new RoomBuilder()));
             case "Shower" -> rooms.add(director.Shower(new RoomBuilder()));
