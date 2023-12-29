@@ -1,5 +1,6 @@
 package cvut.fel.omo.appliance;
 
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.LOCAL_EVENT;
 
@@ -21,7 +22,7 @@ public class LocalEventDetector {
         listeners.add(listener);
     }
 
-    public void notifyAll(LOCAL_EVENT event) {
-        listeners.forEach(listener -> listener.update(event));
+    public void notifyAll(LOCAL_EVENT event, ApplianceAPI appliance) {
+        listeners.forEach(listener -> listener.update(event, appliance));
     }
 }

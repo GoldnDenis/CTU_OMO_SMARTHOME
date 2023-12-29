@@ -1,7 +1,9 @@
 package cvut.fel.omo.appliance;
 
+import lombok.Getter;
 import lombok.Setter;
 
+@Getter
 public class ResourceConsumption {
     private double consumedElectricity;
     private double consumedWater;

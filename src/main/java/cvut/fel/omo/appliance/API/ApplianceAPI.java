@@ -2,6 +2,7 @@ package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.state.ApplianceState;
+import cvut.fel.omo.appliance.state.Broken;
 import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
@@ -10,7 +11,7 @@ import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.RandomGenerator;
 import lombok.Getter;
 
-public abstract class ApplianceAPI implements ApplianceVisitor{
+public abstract class ApplianceAPI implements ApplianceVisitor {
     protected static int counter = 1;
 
     protected final Appliance appliance;
@@ -37,6 +38,11 @@ public abstract class ApplianceAPI implements ApplianceVisitor{
     @Override
     public void visitAnimal(Animal animal) {
 
+    }
+
+    @Override
+    public int getRequiredTime() {
+        return this.appliance.getRequiredTime();
     }
 
     public void changeState(ApplianceState state) {
@@ -72,6 +78,10 @@ public abstract class ApplianceAPI implements ApplianceVisitor{
     }
 
     public abstract void react(GLOBAL_EVENT event);
+
+    public boolean isBroken() {
+        return this.state instanceof Broken;
+    }
 
     protected void breakingDownChance(double chance) {
         if (RandomGenerator.hasHappened(chance)) {

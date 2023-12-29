@@ -6,7 +6,7 @@ import cvut.fel.omo.home.Room;
 
 public abstract class CreatureAPI {
 
-    private final Creature creature;
+    protected final Creature creature;
 
     public CreatureAPI(String name) {
         this.creature = new Creature(name);
@@ -16,6 +16,18 @@ public abstract class CreatureAPI {
 
     public void changeLocation(Room room) {
         this.creature.setCurLocation(room);
+    }
+
+    public boolean isBusy() {
+        return creature.getBusyFor() > 0;
+    }
+
+    public void decrementBusyFor() {
+        creature.setBusyFor(creature.getBusyFor() - 1);
+    }
+
+    public boolean isRepairing() {
+        return creature.getFixingAppliance() != null;
     }
 
     @Override

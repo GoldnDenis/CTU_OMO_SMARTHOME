@@ -16,6 +16,10 @@ public class Appliance {
         System.out.println(toString());
     }
 
+    public int getRequiredTime() {
+        return consumption.getRequiredTime();
+    }
+
     @Override
     public String toString() {
         return "Appliance{" +

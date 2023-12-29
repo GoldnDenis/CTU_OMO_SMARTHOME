@@ -12,4 +12,10 @@ public interface ApplianceVisitor {
 
     void visitAnimal(Animal animal);
 
+    int getRequiredTime();
+
+    void fix();
+
+    boolean isBroken();
+
 }

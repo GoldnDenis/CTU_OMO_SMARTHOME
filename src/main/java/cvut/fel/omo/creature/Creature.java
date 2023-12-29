@@ -1,5 +1,6 @@
 package cvut.fel.omo.creature;
 
+import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
 import cvut.fel.omo.home.Room;
@@ -8,23 +9,26 @@ import lombok.Setter;
 
 @Getter
 public class Creature {
-    protected static int counter = 0;
+    private static int counter = 0;
 
-    protected int id;
-    protected String name;
-
-    @Setter
-    protected Boolean isBusy;
+    private int id;
+    private String name;
 
     @Setter
-    protected Room curLocation;
+    private int busyFor;
+
+    @Setter
+    private ApplianceAPI fixingAppliance;
+
+    @Setter
+    private Room curLocation;
 
     public Creature(String name) {
         counter++;
 
         this.id = counter;
         this.name = name;
-        this.isBusy = false;
+        this.busyFor = 0;
     }
 
     public void printId() {

@@ -10,6 +10,11 @@ public class Animal extends CreatureAPI {
 
     @Override
     public void accept(ApplianceVisitor visitor) {
+        if (this.isBusy()) {
+            this.decrementBusyFor();
+            return;
+        }
+        creature.setBusyFor(visitor.getRequiredTime());
         visitor.visitAnimal(this);
     }
 }
