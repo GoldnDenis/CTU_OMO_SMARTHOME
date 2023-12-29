@@ -5,7 +5,7 @@ public enum ROOM_TYPE {
     LIVING_ROOM,
     BEDROOM,
     KITCHEN,
-    SHOWER_ROOM,
+    SHOWER,
     TOILET,
     OFFICE
 

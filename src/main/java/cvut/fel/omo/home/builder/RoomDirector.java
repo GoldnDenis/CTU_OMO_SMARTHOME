@@ -47,17 +47,11 @@ public class RoomDirector {
                 .build();
     }
 
-    public Room buildToilet(RoomBuilder builder) {
+    public Room Shower(RoomBuilder builder) {
         return builder
                 .id(counter++)
-                .type(ROOM_TYPE.TOILET)
-                .build();
-    }
-
-    public Room buildShowerRoom(RoomBuilder builder) {
-        return builder
-                .id(counter++)
-                .type(ROOM_TYPE.SHOWER_ROOM)
+                .type(ROOM_TYPE.SHOWER)
+                .addAppliance(factory.createAppliance("Smart Speaker"))
                 .build();
     }
 

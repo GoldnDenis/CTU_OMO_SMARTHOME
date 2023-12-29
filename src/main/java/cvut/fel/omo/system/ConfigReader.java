@@ -14,18 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ConfigReader {
-//    private static Config instance;
-//
-//    private Config() {
-//    }
-//
-//    public synchronized static Config getInstance() {
-//        if (instance == null) {
-//            instance = new Config();
-//        }
-//        return instance;
-//    }
-
     private ImmutableConfig config;
 
     public void readJson(String filePath) {
@@ -39,10 +27,13 @@ public class ConfigReader {
     }
 
     public SmartHome setUpHome() {
-        SmartHome home = new SmartHome()
+        SmartHome home = new SmartHome();
 
+        for (String room: config.roomList()) {
+            home.addNewRoom(room);
+        }
 
-        return null;
+        return home;
     }
 
     public List<CreatureAPI> setUpCreatures() {

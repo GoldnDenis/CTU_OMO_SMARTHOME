@@ -11,8 +11,10 @@ import java.util.List;
 
 public class ConfigGenerator {
     private static int jsonCounter = 0;
+
     public static void createJSON(int simDuration, List<String> creatureList, List<String> roomList) {
         ImmutableConfig config = new ImmutableConfig(simDuration, creatureList, roomList);
+        jsonCounter++;
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -21,6 +23,7 @@ public class ConfigGenerator {
         try {
             objectMapper.writeValue(new File(fileName), config);
         } catch (IOException e) {
+            jsonCounter--;
             throw new RuntimeException(e);
         }
     }
