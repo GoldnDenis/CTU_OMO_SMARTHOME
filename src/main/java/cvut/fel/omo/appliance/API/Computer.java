@@ -47,10 +47,18 @@ public class Computer extends ApplianceAPI {
     @Override
     public void react(GLOBAL_EVENT event) {
         switch (event) {
-            case NON_SATISFYING_TEMP
-                    -> this.sleep();
+            case NON_SATISFYING_TEMP -> {
+                Logging.log(
+                        Level.INFO,
+                        "Overheating! going to idle mode!",
+                        this.toString()
+                );
+                this.sleep();
+            }
             case NIGHT_FELL
                     -> this.turnOff();
+            case SUN_HAS_RISEN_UP
+                    -> this.sleep();
         }
     }
 

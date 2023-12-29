@@ -2,7 +2,6 @@ package cvut.fel.omo.creature.API;
 
 import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
-import cvut.fel.omo.creature.API.CreatureAPI;
 
 public class Adult extends CreatureAPI {
 
@@ -27,4 +26,5 @@ public class Adult extends CreatureAPI {
         creature.setBusyFor(visitor.getRequiredTime());
         visitor.visitAdult(this);
     }
+
 }

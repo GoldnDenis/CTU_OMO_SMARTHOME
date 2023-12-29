@@ -33,7 +33,7 @@ public class Broken extends ApplianceState {
     public void fix() {
         applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.NO_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Off(applianceAPI));
-        Logging.log(Level.INFO, MessageConvertor.fixMsg(applianceAPI.toString()), applianceAPI.toString());
+        Logging.log(Level.INFO, MessageConvertor.fixMsg(), applianceAPI.toString());
     }
 
 

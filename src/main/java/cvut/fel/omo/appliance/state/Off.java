@@ -20,13 +20,16 @@ public class Off extends ApplianceState {
 
     @Override
     public void sleep() {
+        applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.IDLE_CONSUMPTION.getPercent());
+        applianceAPI.changeState(new Active(applianceAPI));
+        Logging.log(Level.INFO, MessageConvertor.idleMsg(), applianceAPI.toString());
     }
 
     @Override
     public void turnOn() {
         applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.FULL_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Active(applianceAPI));
-        Logging.log(Level.INFO, MessageConvertor.turnOnMsg(applianceAPI.toString()), applianceAPI.toString());
+        Logging.log(Level.INFO, MessageConvertor.turnOnMsg(), applianceAPI.toString());
     }
 
     @Override

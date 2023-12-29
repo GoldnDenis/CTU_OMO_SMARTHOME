@@ -52,8 +52,14 @@ public class SmartSpeaker extends ApplianceAPI {
         switch (event) {
             case NIGHT_FELL
                     -> this.turnOff();
-            case SUN_HAS_RISEN_UP
-                    -> this.turnOn();
+            case SUN_HAS_RISEN_UP -> {
+                this.turnOn();
+                Logging.log(
+                        Level.INFO,
+                        "Playing the morning alarm."
+                );
+                this.sleep();
+            }
         }
     }
 }

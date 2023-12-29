@@ -52,10 +52,23 @@ public class FoodDispenser extends ApplianceAPI {
         switch (event) {
             case NIGHT_FELL
                     -> this.turnOff();
-            case WATER_SHUT_OFF
-                    -> this.sleep();
-            case SUN_HAS_RISEN_UP
-                    -> this.turnOn();
+            case SUN_HAS_RISEN_UP -> {
+                this.turnOn();
+                Logging.log(
+                        Level.INFO,
+                        "Serving breakfast.",
+                        this.toString()
+                );
+                this.sleep();
+            }
+            case WATER_SHUT_OFF -> {
+                Logging.log(
+                        Level.INFO,
+                        "Not enough water! Going to idle mode.",
+                        this.toString()
+                );
+                this.sleep();
+            }
         }
     }
 }

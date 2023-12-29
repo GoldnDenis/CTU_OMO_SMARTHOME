@@ -52,10 +52,31 @@ public class DrinkMaker extends ApplianceAPI {
         switch (event) {
             case NIGHT_FELL
                     -> this.turnOff();
-            case WATER_SHUT_OFF
-                    -> this.sleep();
-            case SUN_HAS_RISEN_UP, NON_SATISFYING_TEMP
-                    -> this.turnOn();
+            case SUN_HAS_RISEN_UP -> {
+                this.turnOn();
+                Logging.log(
+                        Level.INFO,
+                        "Making morning drinks.",
+                        this.toString()
+                );
+                this.sleep();
+            }
+            case WATER_SHUT_OFF -> {
+                Logging.log(
+                        Level.INFO,
+                        "No water! Going to idle mode."
+                        );
+                this.sleep();
+            }
+            case NON_SATISFYING_TEMP -> {
+                this.turnOn();
+                Logging.log(
+                        Level.INFO,
+                        "Non satisfying temperature! Making suitable drinks.",
+                        this.toString()
+                );
+                this.sleep();
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ public class Idle extends ApplianceState {
     public void breakDown() {
         applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.NO_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Broken(applianceAPI));
-        Logging.log(Level.INFO, MessageConvertor.isBrokenMsg(applianceAPI.toString()), applianceAPI.toString());
+        Logging.log(Level.INFO, MessageConvertor.isBrokenMsg(), applianceAPI.toString());
     }
 
     @Override
@@ -28,14 +28,14 @@ public class Idle extends ApplianceState {
     public void turnOn() {
         applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.FULL_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Active(applianceAPI));
-        Logging.log(Level.INFO, MessageConvertor.turnOnMsg(applianceAPI.toString()), applianceAPI.toString());
+        Logging.log(Level.INFO, MessageConvertor.turnOnMsg(), applianceAPI.toString());
     }
 
     @Override
     public void turnOff() {
         applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.NO_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Off(applianceAPI));
-        Logging.log(Level.INFO, MessageConvertor.turnOffMsg(applianceAPI.toString()), applianceAPI.toString());
+        Logging.log(Level.INFO, MessageConvertor.turnOffMsg(), applianceAPI.toString());
     }
 
     @Override

@@ -51,8 +51,24 @@ public class Stove extends ApplianceAPI {
         switch (event) {
             case NIGHT_FELL
                     -> this.turnOff();
-            case WATER_SHUT_OFF, SUN_HAS_RISEN_UP, NON_SATISFYING_TEMP
+            case SUN_HAS_RISEN_UP
                     -> this.sleep();
+            case WATER_SHUT_OFF -> {
+                Logging.log(
+                        Level.INFO,
+                        "Not enough water! Going to idle mode.",
+                        this.toString()
+                );
+                this.sleep();
+            }
+            case NON_SATISFYING_TEMP -> {
+                Logging.log(
+                        Level.INFO,
+                        "Non satisfying temperature! Going to idle mode.",
+                        this.toString()
+                );
+                this.sleep();
+            }
         }
     }
 }
