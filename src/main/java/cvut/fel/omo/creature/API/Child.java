@@ -1,15 +1,16 @@
-package cvut.fel.omo.creature;
+package cvut.fel.omo.creature.API;
 
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
-public class Adult extends Creature{
+public class Child extends CreatureAPI{
 
-    public Adult(String name) {
+    public Child(String name) {
         super(name);
     }
 
     @Override
     public void accept(ApplianceVisitor visitor) {
-
+        visitor.visitChild(this);
     }
+
 }

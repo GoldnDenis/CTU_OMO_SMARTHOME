@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-public abstract class Creature {
+public class Creature {
     protected static int counter = 0;
 
     protected int id;
@@ -15,18 +15,17 @@ public abstract class Creature {
 
     @Setter
     protected Boolean isBusy;
-    @Getter
+
+    @Setter
     protected Room curLocation;
 
-    protected Creature(String name) {
+    public Creature(String name) {
         counter++;
 
         this.id = counter;
         this.name = name;
         this.isBusy = false;
     }
-
-    public void changeRoom() {}
 
     public void printId() {
         System.out.println(this);
@@ -40,6 +39,5 @@ public abstract class Creature {
                 '}';
     }
 
-    public abstract void accept(ApplianceVisitor visitor);
 
 }

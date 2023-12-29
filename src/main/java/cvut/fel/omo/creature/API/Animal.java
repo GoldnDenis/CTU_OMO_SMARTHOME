@@ -1,8 +1,8 @@
-package cvut.fel.omo.creature;
+package cvut.fel.omo.creature.API;
 
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
-public class Animal extends Creature{
+public class Animal extends CreatureAPI {
 
     public Animal(String name) {
         super(name);
@@ -10,7 +10,6 @@ public class Animal extends Creature{
 
     @Override
     public void accept(ApplianceVisitor visitor) {
-
+        visitor.visitAnimal(this);
     }
-
 }

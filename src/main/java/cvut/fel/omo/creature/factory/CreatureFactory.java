@@ -1,10 +1,9 @@
 package cvut.fel.omo.creature.factory;
 
-import cvut.fel.omo.appliance.Appliance;
-import cvut.fel.omo.appliance.visitors.*;
-import cvut.fel.omo.creature.Adult;
-import cvut.fel.omo.creature.Animal;
-import cvut.fel.omo.creature.Child;
+import cvut.fel.omo.creature.API.Adult;
+import cvut.fel.omo.creature.API.Animal;
+import cvut.fel.omo.creature.API.Child;
+import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.system.Logging;
 
@@ -12,8 +11,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 public class CreatureFactory {
-    public Optional<Creature> createCreature(String type, String name) {
-        Creature creature = null;
+    public Optional<CreatureAPI> createCreature(String type, String name) {
+        CreatureAPI creature = null;
 
         switch (type) {
             case "Adult" -> creature = new Adult(name);

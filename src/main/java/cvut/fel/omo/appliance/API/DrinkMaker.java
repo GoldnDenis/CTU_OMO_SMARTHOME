@@ -2,9 +2,9 @@ package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
-import cvut.fel.omo.creature.Adult;
-import cvut.fel.omo.creature.Animal;
-import cvut.fel.omo.creature.Child;
+import cvut.fel.omo.creature.API.Adult;
+import cvut.fel.omo.creature.API.Animal;
+import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.Logging;
 
