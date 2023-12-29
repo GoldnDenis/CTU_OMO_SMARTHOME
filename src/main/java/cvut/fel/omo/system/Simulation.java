@@ -14,7 +14,7 @@ public class Simulation {
         ConfigReader config = new ConfigReader();
         SmartHome smartHome = config.setUpHome();
         int simDuration = config.getDuration();
-
+        
         for (int day = 1; day <= simDuration; ++day) {
             for (int hour = 0; hour < 24; ++hour) {
 //                System.out.println("Day " + day + " - " + hour + ":00");

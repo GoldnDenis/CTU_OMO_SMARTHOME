@@ -2,6 +2,7 @@ package cvut.fel.omo.creature;
 
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
+import cvut.fel.omo.home.Room;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,8 @@ public abstract class Creature {
 
     @Setter
     protected Boolean isBusy;
+    @Getter
+    protected Room curLocation;
 
     protected Creature(String name) {
         counter++;
@@ -22,6 +25,8 @@ public abstract class Creature {
         this.name = name;
         this.isBusy = false;
     }
+
+    public void changeRoom() {}
 
     public void printId() {
         System.out.println(this);
