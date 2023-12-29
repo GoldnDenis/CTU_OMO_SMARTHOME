@@ -12,28 +12,31 @@ public class Simulation {
 
     public void run() {
         ConfigReader config = new ConfigReader();
-        SmartHome smartHome = config.setUpHome();
-        int simDuration = config.getDuration();
-        
-        for (int day = 1; day <= simDuration; ++day) {
-            for (int hour = 0; hour < 24; ++hour) {
-//                System.out.println("Day " + day + " - " + hour + ":00");
-                Stream<Room> roomStream = smartHome.getFloors().stream()
-                        .flatMap(floor -> floor.getRooms().stream());
+        config.readJson("Ds");
+//        SmartHome smartHome = config.setUpHome();
+//        int simDuration = config.getDuration();
 
-                Stream<Creature> creatureStream = roomStream
-                        .flatMap(room -> room.getCreatures().stream())
-                        .filter(Creature::getIsBusy)
-                        .forEach(creature -> creature.accept(
-                                roomStream.flatMap(room -> room.getAppliances().stream())
-                                        .
-                        ));
-                Stream<ApplianceAPI> applianceStream = roomStream
-                        .flatMap(room -> room.getAppliances().stream())
-                        .filter(appliance -> ! (appliance.getState() instanceof Active));
 
-                }
-            }
-        }
+
+//        for (int day = 1; day <= simDuration; ++day) {
+//            for (int hour = 0; hour < 24; ++hour) {
+////                System.out.println("Day " + day + " - " + hour + ":00");
+//                Stream<Room> roomStream = smartHome.getFloors().stream()
+//                        .flatMap(floor -> floor.getRooms().stream());
+//
+//                Stream<Creature> creatureStream = roomStream
+//                        .flatMap(room -> room.getCreatures().stream())
+//                        .filter(Creature::getIsBusy)
+//                        .forEach(creature -> creature.accept(
+//                                roomStream.flatMap(room -> room.getAppliances().stream())
+//                                        .
+//                        ));
+//                Stream<ApplianceAPI> applianceStream = roomStream
+//                        .flatMap(room -> room.getAppliances().stream())
+//                        .filter(appliance -> ! (appliance.getState() instanceof Active));
+//
+//                }
+//            }
+//        }
     }
 }

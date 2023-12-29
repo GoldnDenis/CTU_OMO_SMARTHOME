@@ -1,0 +1,27 @@
+package cvut.fel.omo.system;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import cvut.fel.omo.creature.API.CreatureAPI;
+import cvut.fel.omo.creature.Creature;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+public class ConfigGenerator {
+    private static int jsonCounter = 0;
+    public static void createJSON(int simDuration, List<String> creatureList, List<String> roomList) {
+        ImmutableConfig config = new ImmutableConfig(simDuration, creatureList, roomList);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String fileName = "config" + jsonCounter + ".json";
+        try {
+            objectMapper.writeValue(new File(fileName), config);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
