@@ -31,4 +31,6 @@ public class SmartHome {
             default -> Logging.log(Level.WARNING, name + " is not a viable room");
         }
     }
+
+    public int getRoomSize() {return rooms.size();}
 }

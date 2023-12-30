@@ -8,10 +8,7 @@ import cvut.fel.omo.home.SmartHome;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ConfigReader {
     private ImmutableConfig config;
@@ -37,12 +34,12 @@ public class ConfigReader {
     }
 
     public List<CreatureAPI> setUpCreatures() {
-        List<CreatureAPI> creatures = Collections.emptyList();
+        List<CreatureAPI> creatures = new ArrayList<>();
 
         CreatureFactory factory = new CreatureFactory();
         for (String creatureElement: config.creatureList()) {
             String[] components = creatureElement.split(" ");
-            Optional<CreatureAPI> createdCreature = factory.createCreature(components[0], components[1]);
+            Optional<CreatureAPI> createdCreature = factory.createCreature(components[1], components[0]);
             createdCreature.ifPresent(creatures::add);
         }
 

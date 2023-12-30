@@ -88,6 +88,8 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         return this.state instanceof Active;
     }
 
+    public boolean isAvailable() { return !isActive() || !isBroken();}
+
     protected void breakingDownChance(double chance) {
         if (RandomGenerator.hasHappened(chance)) {
             this.breakDown();

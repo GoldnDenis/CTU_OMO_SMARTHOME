@@ -5,7 +5,7 @@ import cvut.fel.omo.home.ROOM_TYPE;
 import cvut.fel.omo.home.Room;
 
 public class RoomDirector {
-    private int counter = 1;
+    private int counter = 0;
     private final ApplianceFactory factory = new ApplianceFactory();
 
     public Room buildKitchen(RoomBuilder builder) {
