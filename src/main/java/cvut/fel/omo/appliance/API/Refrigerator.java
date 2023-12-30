@@ -28,19 +28,37 @@ public class Refrigerator extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving beer.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                adult.getName() ,
+                "is drinking beer."
+        );
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving ice cream.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                child.getName() ,
+                "is eating ice cream."
+        );
 
         this.breakingDownChance(30);
     }
 
     @Override
     public void visitAnimal(Animal animal) {
+        this.turnOn();
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                animal.getName() ,
+                "is playing."
+        );
+
         this.breakingDownChance(50);
     }
 

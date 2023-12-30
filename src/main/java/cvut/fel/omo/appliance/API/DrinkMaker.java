@@ -28,13 +28,23 @@ public class DrinkMaker extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving coffee.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                adult.getName() ,
+                "is drinking coffee."
+        );
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving juice.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                child.getName() ,
+                "is drinking juice."
+        );
 
         this.breakingDownChance(30);
     }
@@ -42,7 +52,12 @@ public class DrinkMaker extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving water.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                animal.getName() ,
+                "is drinking juice."
+        );
 
         this.breakingDownChance(50);
     }

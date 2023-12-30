@@ -28,13 +28,23 @@ public class FoodDispenser extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving big portion.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                adult.getName() ,
+                "is eating big portion."
+        );
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving small portion.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                child.getName() ,
+                "is eating small portion."
+        );
 
         this.breakingDownChance(30);
     }
@@ -42,7 +52,12 @@ public class FoodDispenser extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(Level.INFO, "Serving animal food.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                animal.getName() ,
+                "is eating animal food."
+        );
 
         this.breakingDownChance(50);
     }

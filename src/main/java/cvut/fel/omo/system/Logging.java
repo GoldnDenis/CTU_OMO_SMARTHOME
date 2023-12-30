@@ -15,4 +15,9 @@ public class Logging {
         String logText = '"' + message + '"' + " from " + source;
         logger.log(level, logText);
     }
+
+    public static void log(Level level, String appliance, String creature, String message) {
+        String logText = '"' + creature + " is using " + appliance + " and " + message + '"';
+        logger.log(level, logText);
+    }
 }

@@ -77,4 +77,8 @@ public abstract class CreatureAPI {
     public String toString() {
         return this.creature.toString();
     }
+
+    public String getName() {
+        return creature.getName();
+    }
 }

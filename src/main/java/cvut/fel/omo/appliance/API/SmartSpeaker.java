@@ -28,13 +28,23 @@ public class SmartSpeaker extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Turning on the classical music.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                adult.getName() ,
+                "is turning on classical music."
+        );
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Turning on the rock music.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                child.getName() ,
+                "is turning on rock music."
+        );
 
         this.breakingDownChance(30);
     }
@@ -42,7 +52,12 @@ public class SmartSpeaker extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(Level.INFO, "Turning on the nature sounds.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                animal.getName() ,
+                "is turning on nature sounds."
+        );
 
         this.breakingDownChance(50);
     }

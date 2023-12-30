@@ -28,19 +28,35 @@ public class Computer extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Launching work application.", this.toString());
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                adult.getName() ,
+                "is launching work application."
+        );
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Launching game.", this.toString());
-
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                child.getName() ,
+                "is launching game."
+        );
         this.breakingDownChance(30);
     }
 
     @Override
     public void visitAnimal(Animal animal) {
+        this.turnOn();
+        Logging.log(
+                Level.INFO,
+                this.toString(),
+                animal.getName() ,
+                "is playing"
+        );
         this.breakingDownChance(50);
     }
 
