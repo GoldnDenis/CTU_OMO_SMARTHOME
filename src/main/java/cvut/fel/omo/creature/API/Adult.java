@@ -18,6 +18,7 @@ public class Adult extends CreatureAPI {
             }
             if (creature.getBusyFor() == 1) {
                 visitor.sleep();
+                creature.setCurrAppliance(null);
             }
             this.decrementBusyFor();
             return;
@@ -28,6 +29,7 @@ public class Adult extends CreatureAPI {
             creature.setCurrAppliance((ApplianceAPI) visitor);
             return;
         }
+        creature.setCurrAppliance((ApplianceAPI) visitor);
         creature.setBusyFor(visitor.getRequiredTime());
         visitor.visitAdult(this);
     }

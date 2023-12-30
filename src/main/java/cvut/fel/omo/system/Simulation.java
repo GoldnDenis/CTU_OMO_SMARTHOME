@@ -14,8 +14,6 @@ import java.util.stream.Stream;
 public class Simulation {
 
     public void run() {
-        ConfigGenerator.createJSON(3, List.of("Musta Child", "Denis Child", "Jiri Adult", "Bonnie Animal"), List.of("Kitchen", "Living Room"));
-
         ConfigReader config = new ConfigReader();
 
         config.readJson("config1.json");

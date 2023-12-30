@@ -9,6 +9,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class CreatureAPI {
 
@@ -25,10 +26,17 @@ public abstract class CreatureAPI {
         List<Integer> occupiedApplianceIndices = new ArrayList<>();
         List<Integer> occupiedRoomIndices = new ArrayList<>();
 
-        while ( true ) {
+        if ( isBusy() ) {
+            accept(getCreature().getCurrAppliance());
+            return;
+        }
+
+        while ( !isBusy() ) {
             int applianceIdx = RandomGenerator.generateNumberWithout(creature.getCurLocation().getAppliancesSize() - 1, occupiedApplianceIndices);
-            if ( creature.getApplianceInCurRoomByIdx(applianceIdx).isPresent() ) {
-                ApplianceAPI appliance = creature.getApplianceInCurRoomByIdx(applianceIdx).get();
+
+            Optional<ApplianceAPI> optionalAppliance = creature.getApplianceInCurRoomByIdx(applianceIdx);
+            if ( optionalAppliance.isPresent() ) {
+                ApplianceAPI appliance = optionalAppliance.get();
 
                 if ( !appliance.isAvailable() ) {
                     occupiedApplianceIndices.add(applianceIdx);
@@ -36,11 +44,9 @@ public abstract class CreatureAPI {
                         occupiedRoomIndices.add(creature.getCurLocation().getId());
                         if ( !changeRoomWithout(rooms, occupiedRoomIndices)) break;
                     }
-                    continue;
+                } else {
+                    accept(appliance);
                 }
-
-                accept(appliance);
-                break;
             }
         }
     }

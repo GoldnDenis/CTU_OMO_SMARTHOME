@@ -4,6 +4,7 @@ import cvut.fel.omo.appliance.Appliance;
 import cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.creature.factory.CreatureFactory;
+import cvut.fel.omo.system.ConfigGenerator;
 import cvut.fel.omo.system.Logging;
 import cvut.fel.omo.system.Simulation;
 import org.springframework.boot.SpringApplication;
@@ -18,22 +19,7 @@ import java.util.logging.Level;
 public class SmartHomeApplication {
 
 	public static void main(String[] args) {
-//		CreatureFactory factory = new CreatureFactory();
-//		Optional<Creature> adult1 = factory.createCreature("Adult", "Marek");
-//		Optional<Creature> adult2 = factory.createCreature("Adult", "John");
-//		Optional<Creature> child = factory.createCreature("Child", "Denis");
-//
-//		Optional<Creature> monster = factory.createCreature("Monster", "Sullivan");
-//
-//		List<Optional<Creature>> list = new ArrayList<>();
-//		list.add(adult1);
-//		list.add(adult2);
-//		list.add(child);
-//		list.add(monster);
-//
-//		for (Optional<Creature> creature: list) {
-//			creature.ifPresent(Creature::printId);
-//		}
+//        ConfigGenerator.createJSON(3, List.of("Musta Adult", "Denis Adult", "Jiri Adult", "Bonnie Adult"), List.of("Kitchen", "Living Room"));
 
 		Simulation simulation = new Simulation();
 		simulation.run();

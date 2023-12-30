@@ -6,6 +6,7 @@ import java.util.Random;
 public class RandomGenerator {
 
     public static int generateNumber(int bound) {
+        if (bound <= 0) return 0;
         return new Random().nextInt(bound);
     }
 

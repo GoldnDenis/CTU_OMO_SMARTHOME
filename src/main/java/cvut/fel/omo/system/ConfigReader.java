@@ -9,6 +9,7 @@ import cvut.fel.omo.home.SmartHome;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
 
 public class ConfigReader {
     private ImmutableConfig config;
@@ -19,8 +20,25 @@ public class ConfigReader {
         try {
             config = objectMapper.readValue(new File(filePath), ImmutableConfig.class);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Logging.log(Level.WARNING, "Something went wrong with the specified config file\nLoading a preset configurations");
+            config = getStandardConfig();
         }
+    }
+
+    private ImmutableConfig getStandardConfig() {
+        int simDuration = 7;
+        List <String> creatures = List.of(
+                "Musta Adult", "Denis Adult", "Jiri Adult", "Alex Adult",
+                "Daniel Child", "Honda Child",
+                "Bonnie Animal", "Bobik Animal", "Murky Animal"
+        );
+        List<String> rooms = List.of(
+                "Living Room", "Kitchen",
+                "Bedroom", "Bedroom", "Shower", "Office",
+                "Shower", "Bedroom"
+        );
+
+        return new ImmutableConfig(simDuration, creatures, rooms);
     }
 
     public SmartHome setUpHome() {
