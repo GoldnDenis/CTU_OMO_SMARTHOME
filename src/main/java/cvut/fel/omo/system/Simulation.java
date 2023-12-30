@@ -26,7 +26,7 @@ public class Simulation {
             for (int hour = 0; hour < 24; ++hour) {
                 System.out.println("Day " + day + ": " + hour + ":00");
                 creatures.stream()
-                        .filter(creatureAPI -> !creatureAPI.isBusy())
+//                        .filter(creatureAPI -> !creatureAPI.isBusy())
                         .forEach(creatureAPI -> {
                             creatureAPI.move(home.getRooms());
                             creatureAPI.interact(home.getRooms());

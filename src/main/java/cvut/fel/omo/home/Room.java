@@ -16,7 +16,6 @@ public class Room {
     private ROOM_TYPE type;
 
     private List<ApplianceAPI> appliances;
-    private List<CreatureAPI> creatures;
 
     public Room(RoomBuilder builder) {
         this.id = builder.getId();

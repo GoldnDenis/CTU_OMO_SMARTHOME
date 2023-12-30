@@ -5,11 +5,13 @@ import cvut.fel.omo.appliance.API.ApplianceVisitor;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.home.Room;
 import cvut.fel.omo.system.RandomGenerator;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CreatureAPI {
+    @Getter
 
     protected final Creature creature;
 
@@ -23,8 +25,8 @@ public abstract class CreatureAPI {
         List<Integer> occupiedApplianceIndices = new ArrayList<>();
         List<Integer> occupiedRoomIndices = new ArrayList<>();
 
-        while ( !isBusy() ) {
-            int applianceIdx = RandomGenerator.generateNumberWithout(rooms.size() - 1, occupiedApplianceIndices);
+        while ( true ) {
+            int applianceIdx = RandomGenerator.generateNumberWithout(creature.getCurLocation().getAppliancesSize() - 1, occupiedApplianceIndices);
             if ( creature.getApplianceInCurRoomByIdx(applianceIdx).isPresent() ) {
                 ApplianceAPI appliance = creature.getApplianceInCurRoomByIdx(applianceIdx).get();
 
@@ -38,6 +40,7 @@ public abstract class CreatureAPI {
                 }
 
                 accept(appliance);
+                break;
             }
         }
     }

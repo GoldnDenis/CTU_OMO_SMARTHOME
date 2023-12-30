@@ -28,13 +28,13 @@ public class Stove extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(Level.INFO, "Preparing steak.", this.toString());
+        Logging.log(Level.INFO, "{" + adult.getCreature().getName() + "} is Preparing steak.", this.toString());
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(Level.INFO, "Preparing chicken nuggets", this.toString());
+        Logging.log(Level.INFO, "{" + child.getCreature().getName() + "} is Preparing chicken nuggets", this.toString());
 
         this.breakingDownChance(30);
     }
