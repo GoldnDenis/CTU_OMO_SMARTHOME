@@ -1,6 +1,7 @@
 package cvut.fel.omo.appliance.API;
 
 import cvut.fel.omo.appliance.Appliance;
+import cvut.fel.omo.appliance.LocalEventDetector;
 import cvut.fel.omo.appliance.state.Active;
 import cvut.fel.omo.appliance.state.ApplianceState;
 import cvut.fel.omo.appliance.state.Broken;
@@ -8,6 +9,7 @@ import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
+import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.RandomGenerator;
 import lombok.Getter;

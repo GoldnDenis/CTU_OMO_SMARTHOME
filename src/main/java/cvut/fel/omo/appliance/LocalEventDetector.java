@@ -26,4 +26,15 @@ public class LocalEventDetector {
         listeners.forEach(listener -> listener.update(appliance));
     }
 
+    public void notifyFirstNotBusy(ApplianceAPI applianceAPI) {
+        listeners.stream()
+                .map(LocalEventListener::getCreature)
+                .filter(creatureAPI -> !creatureAPI.isBusy())
+                .findFirst()
+                .ifPresent(creatureAPI -> {
+                    creatureAPI.accept(applianceAPI);
+                });
+
+    }
+
 }
