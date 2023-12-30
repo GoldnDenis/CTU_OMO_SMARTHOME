@@ -13,6 +13,7 @@ public class Adult extends CreatureAPI {
     public void accept(ApplianceVisitor visitor) {
         if (this.isBusy()) {
             if (this.isRepairing() && creature.getBusyFor() == 1) {
+                creature.setRepairing(false);
                 visitor.fix();
             }
             if (creature.getBusyFor() == 1) {
@@ -22,6 +23,7 @@ public class Adult extends CreatureAPI {
             return;
         }
         if (visitor.isBroken()) {
+            creature.setRepairing(true);
             creature.setBusyFor(2);
             creature.setCurrAppliance((ApplianceAPI) visitor);
             return;

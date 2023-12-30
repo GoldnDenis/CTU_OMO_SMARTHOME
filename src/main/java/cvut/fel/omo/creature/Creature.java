@@ -19,6 +19,9 @@ public class Creature {
     private int busyFor;
 
     @Setter
+    private boolean isRepairing;
+
+    @Setter
     private ApplianceAPI currAppliance;
 
     @Setter
@@ -30,6 +33,7 @@ public class Creature {
         this.id = counter;
         this.name = name;
         this.busyFor = 0;
+        this.isRepairing = false;
     }
 
     public int getApplianceNumInRoom() {

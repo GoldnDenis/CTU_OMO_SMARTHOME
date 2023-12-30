@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CreatureAPI {
-    @Getter
 
+    @Getter
     protected final Creature creature;
 
     public CreatureAPI(String name) {
@@ -70,7 +70,7 @@ public abstract class CreatureAPI {
     }
 
     public boolean isRepairing() {
-        return creature.getCurrAppliance() != null;
+        return creature.isRepairing();
     }
 
     @Override
