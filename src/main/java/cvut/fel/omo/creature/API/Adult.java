@@ -23,7 +23,7 @@ public class Adult extends CreatureAPI {
         }
         if (visitor.isBroken()) {
             creature.setBusyFor(2);
-            creature.setFixingAppliance((ApplianceAPI) visitor);
+            creature.setCurrAppliance((ApplianceAPI) visitor);
             return;
         }
         creature.setBusyFor(visitor.getRequiredTime());

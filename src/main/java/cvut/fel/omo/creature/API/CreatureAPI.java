@@ -70,7 +70,7 @@ public abstract class CreatureAPI {
     }
 
     public boolean isRepairing() {
-        return creature.getFixingAppliance() != null;
+        return creature.getCurrAppliance() != null;
     }
 
     @Override

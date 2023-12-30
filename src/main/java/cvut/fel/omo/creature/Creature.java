@@ -19,7 +19,7 @@ public class Creature {
     private int busyFor;
 
     @Setter
-    private ApplianceAPI fixingAppliance;
+    private ApplianceAPI currAppliance;
 
     @Setter
     private Room curLocation;
