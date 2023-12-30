@@ -28,12 +28,13 @@ public class SmartSpeaker extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is turning on classical music."
-        );
+//        Logging.log(
+//                Level.INFO,
+//                this.toString(),
+//                adult.getName() ,
+//                "is turning on classical music."
+//        );
+        System.out.println(toString() + adult.getName() + " is turning on classical music.");
     }
 
     @Override

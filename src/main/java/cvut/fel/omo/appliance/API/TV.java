@@ -28,12 +28,13 @@ public class TV extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is turning on drama movie."
-        );
+//        Logging.log(
+//                Level.INFO,
+//                this.toString(),
+//                adult.getName() ,
+//                "is watching a drama movie."
+//        );
+        System.out.println(toString() + adult.getName() + " is watching a drama movie.");
     }
 
     @Override
@@ -43,7 +44,7 @@ public class TV extends ApplianceAPI {
                 Level.INFO,
                 this.toString(),
                 child.getName() ,
-                "is turning on cartoon."
+                "is watching a cartoon."
         );
 
         this.breakingDownChance(30);
@@ -56,7 +57,7 @@ public class TV extends ApplianceAPI {
                 Level.INFO,
                 this.toString(),
                 animal.getName() ,
-                "is turning on nature footage."
+                "is watching a Nature Discovery channel."
         );
 
         this.breakingDownChance(50);

@@ -23,8 +23,8 @@ public class Appliance {
     @Override
     public String toString() {
         return "Appliance{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name +
+                ", id=" + id + '\'' +
                 '}';
     }
 

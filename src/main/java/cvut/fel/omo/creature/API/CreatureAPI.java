@@ -32,7 +32,7 @@ public abstract class CreatureAPI {
         }
 
         while ( !isBusy() ) {
-            int applianceIdx = RandomGenerator.generateNumberWithout(creature.getCurLocation().getAppliancesSize() - 1, occupiedApplianceIndices);
+            int applianceIdx = RandomGenerator.generateNumberWithout(creature.getCurLocation().getAppliancesSize(), occupiedApplianceIndices);
 
             Optional<ApplianceAPI> optionalAppliance = creature.getApplianceInCurRoomByIdx(applianceIdx);
             if ( optionalAppliance.isPresent() ) {
@@ -54,14 +54,14 @@ public abstract class CreatureAPI {
     public void move(List<Room> rooms) {
         if ( isBusy() ) return;
 
-        int roomIdx = RandomGenerator.generateNumber(rooms.size() - 1);
+        int roomIdx = RandomGenerator.generateNumber(rooms.size());
         creature.setCurLocation(rooms.get(roomIdx));
     }
 
     public boolean changeRoomWithout(List<Room> rooms, List<Integer> exclude) {
         if ( rooms.size() == exclude.size() ) return false;
 
-        int roomIdx = RandomGenerator.generateNumberWithout(rooms.size() - 1, exclude);
+        int roomIdx = RandomGenerator.generateNumberWithout(rooms.size(), exclude);
         creature.setCurLocation(rooms.get(roomIdx));
 
         return true;

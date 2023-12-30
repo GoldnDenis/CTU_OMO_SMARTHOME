@@ -67,7 +67,6 @@ public class Simulation {
                 brokenAppliances.forEach(localEventDetector::notifyFirstNotBusy);
 
                 creatures.stream()
-//                        .filter(creatureAPI -> !creatureAPI.isBusy())
                         .forEach(creatureAPI -> {
                             creatureAPI.move(home.getRooms());
                             creatureAPI.interact(home.getRooms());
