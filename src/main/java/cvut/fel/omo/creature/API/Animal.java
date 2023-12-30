@@ -10,7 +10,13 @@ public class Animal extends CreatureAPI {
 
     @Override
     public void accept(ApplianceVisitor visitor) {
+        if (!visitor.isAvailable()) {
+            return;
+        }
         if (this.isBusy()) {
+            if (creature.getBusyFor() == 1) {
+                visitor.sleep();
+            }
             this.decrementBusyFor();
             return;
         }

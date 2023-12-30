@@ -16,6 +16,10 @@ public interface ApplianceVisitor {
 
     void fix();
 
+    void sleep();
+
     boolean isBroken();
+
+    boolean isAvailable();
 
 }

@@ -15,6 +15,9 @@ public class Adult extends CreatureAPI {
             if (this.isRepairing() && creature.getBusyFor() == 1) {
                 visitor.fix();
             }
+            if (creature.getBusyFor() == 1) {
+                visitor.sleep();
+            }
             this.decrementBusyFor();
             return;
         }
