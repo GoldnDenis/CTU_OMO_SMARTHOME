@@ -21,8 +21,8 @@ public class ActivityAndUsageReport {
         }
     }
 
-    public static void saveReport(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".log"))) {
+    public static void saveReport() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("ActivityAndUsageReport.log"))) {
             for (String report: reportList) {
                 writer.write(report);
                 writer.newLine();
