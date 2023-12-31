@@ -7,13 +7,14 @@ import lombok.Setter;
 @Setter
 public class Appliance {
 
-    protected int id;
-    protected String name;
+    private int id;
+    private String name;
 
-    protected ResourceConsumption consumption;
+    private ResourceConsumption consumption;
+    private Manual manual;
 
     public void printId() {
-        System.out.println(toString());
+        System.out.println(this);
     }
 
     public int getRequiredTime() {
@@ -30,5 +31,9 @@ public class Appliance {
 
     public void setConsumptionPercent(double percent) {
         consumption.setPercent(percent);
+    }
+
+    public int getTimeReqToFix() {
+        return manual.getTimeReqToFix();
     }
 }

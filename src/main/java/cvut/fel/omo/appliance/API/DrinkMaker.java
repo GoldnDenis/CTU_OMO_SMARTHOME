@@ -1,5 +1,6 @@
 package cvut.fel.omo.appliance.API;
 
+import cvut.fel.omo.appliance.Manual;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.creature.API.Adult;
@@ -23,6 +24,7 @@ public class DrinkMaker extends ApplianceAPI {
                         APPLIANCE_CONSUMP_INFO.DRINKMAKER_REQ_TIME.getValue()
                 )
         );
+        appliance.setManual(new Manual(3));
     }
 
     @Override

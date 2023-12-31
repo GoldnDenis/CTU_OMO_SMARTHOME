@@ -1,5 +1,6 @@
 package cvut.fel.omo.appliance.API;
 
+import cvut.fel.omo.appliance.Manual;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.creature.API.Adult;
@@ -23,6 +24,7 @@ public class TV extends ApplianceAPI {
                         APPLIANCE_CONSUMP_INFO.TV_SESSION.getValue()
                 )
         );
+        appliance.setManual(new Manual(4));
     }
 
     @Override
@@ -34,7 +36,7 @@ public class TV extends ApplianceAPI {
 //                adult.getName() ,
 //                "is watching a drama movie."
 //        );
-        System.out.println(toString() + adult.getName() + " is watching a drama movie.");
+        System.out.println(this + adult.getName() + " is watching a drama movie.");
     }
 
     @Override

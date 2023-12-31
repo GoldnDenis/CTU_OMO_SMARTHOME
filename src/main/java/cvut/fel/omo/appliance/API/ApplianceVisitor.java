@@ -22,4 +22,6 @@ public interface ApplianceVisitor {
 
     boolean isAvailable();
 
+    int getTimeReqToFix();
+
 }

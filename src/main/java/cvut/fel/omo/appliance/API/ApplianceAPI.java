@@ -102,4 +102,8 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         }
     }
 
+    public int getTimeReqToFix() {
+        return appliance.getTimeReqToFix();
+    }
+
 }

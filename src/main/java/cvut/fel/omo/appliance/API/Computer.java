@@ -1,5 +1,6 @@
 package cvut.fel.omo.appliance.API;
 
+import cvut.fel.omo.appliance.Manual;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.creature.API.Adult;
@@ -23,6 +24,7 @@ public class Computer extends ApplianceAPI {
                         APPLIANCE_CONSUMP_INFO.COMPUTER_SESSION.getValue()
                 )
         );
+        appliance.setManual(new Manual(4));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cvut.fel.omo.appliance.API;
 
+import cvut.fel.omo.appliance.Manual;
 import cvut.fel.omo.appliance.ResourceConsumption;
 import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.creature.API.Adult;
@@ -23,6 +24,7 @@ public class SmartSpeaker extends ApplianceAPI {
                         APPLIANCE_CONSUMP_INFO.SPEAKER_SESSION.getValue()
                 )
         );
+        appliance.setManual(new Manual(2));
     }
 
     @Override
@@ -34,7 +36,7 @@ public class SmartSpeaker extends ApplianceAPI {
 //                adult.getName() ,
 //                "is turning on classical music."
 //        );
-        System.out.println(toString() + adult.getName() + " is turning on classical music.");
+        System.out.println(this + adult.getName() + " is turning on classical music.");
     }
 
     @Override
