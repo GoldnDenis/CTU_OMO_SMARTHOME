@@ -6,6 +6,8 @@ import cvut.fel.omo.home.Room;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Getter
@@ -14,6 +16,8 @@ public class Creature {
 
     private int id;
     private String name;
+
+    private Map<String, Integer> usageMap;
 
     @Setter
     private int busyFor;
@@ -34,6 +38,16 @@ public class Creature {
         this.name = name;
         this.busyFor = 0;
         this.isRepairing = false;
+        this.usageMap = new HashMap<>();
+    }
+
+    public void putUsageMap(String key) {
+        if ( usageMap.containsKey(key) ) {
+            int count = usageMap.get(key);
+            usageMap.put(key, ++count);
+        } else {
+            usageMap.put(key, 1);
+        }
     }
 
     public int getApplianceNumInRoom() {

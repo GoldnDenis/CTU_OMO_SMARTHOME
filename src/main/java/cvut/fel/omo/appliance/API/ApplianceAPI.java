@@ -43,6 +43,10 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     }
 
+    public String getName() {
+        return appliance.getName();
+    }
+
     @Override
     public int getRequiredTime() {
         return this.appliance.getRequiredTime();

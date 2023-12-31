@@ -14,6 +14,7 @@ public class RoomBuilder {
 
     private int id;
 
+    private String name;
     private ROOM_TYPE type;
 
     private List<ApplianceAPI> appliances;
@@ -25,6 +26,11 @@ public class RoomBuilder {
 
     public RoomBuilder id(int id) {
         this.id = id;
+        return this;
+    }
+
+    public RoomBuilder name(String name) {
+        this.name = name;
         return this;
     }
 

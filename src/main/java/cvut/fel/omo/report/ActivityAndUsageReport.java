@@ -7,15 +7,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class ActivityAndUsageReport {
     private static List<String> reportList;
 
+    private static int counter = 0;
+
     public static void generateReport(CreatureAPI creature) {
-        //todo map traversal
-//        for (ApplianceAPI appliance: creature.getUsedApplianceList()) {
-//            reportList
-//        }
+        reportList.add(++counter + ") " + creature.getName() + ":");
+        for (Map.Entry<String, Integer> entry: creature.getUsageMap().entrySet()) {
+            reportList.add(entry.getKey() + " was used " + entry.getValue() + " times");
+        }
     }
 
     public static void saveReport(String fileName) {

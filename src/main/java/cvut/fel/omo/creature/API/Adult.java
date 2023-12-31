@@ -30,6 +30,7 @@ public class Adult extends CreatureAPI {
             return;
         }
         creature.setCurrAppliance((ApplianceAPI) visitor);
+        creature.putUsageMap(((ApplianceAPI) visitor).getName());
         creature.setBusyFor(visitor.getRequiredTime());
         visitor.visitAdult(this);
     }

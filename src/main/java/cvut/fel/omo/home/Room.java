@@ -12,13 +12,15 @@ import java.util.List;
 public class Room {
 
     private int id;
+    private String name;
 
-    private ROOM_TYPE type;
+    private ROOM_TYPE type; // todo:: check if necessary
 
     private List<ApplianceAPI> appliances;
 
     public Room(RoomBuilder builder) {
         this.id = builder.getId();
+        this.name = builder.getName();
         this.type = builder.getType();
         this.appliances = builder.getAppliances();
     }

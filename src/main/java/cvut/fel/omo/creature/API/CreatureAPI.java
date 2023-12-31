@@ -9,6 +9,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public abstract class CreatureAPI {
@@ -65,6 +66,10 @@ public abstract class CreatureAPI {
         creature.setCurLocation(rooms.get(roomIdx));
 
         return true;
+    }
+
+    public Map<String, Integer> getUsageMap() {
+        return creature.getUsageMap();
     }
 
     public boolean isBusy() {

@@ -12,6 +12,7 @@ public class RoomDirector {
         return builder
                 .id(counter++)
                 .type(ROOM_TYPE.KITCHEN)
+                .name("Kitchen")
                 .addAppliance(factory.createAppliance("Stove"))
                 .addAppliance(factory.createAppliance("Drink Maker"))
                 .addAppliance(factory.createAppliance("Refrigerator"))
@@ -23,6 +24,7 @@ public class RoomDirector {
         return builder
                 .id(counter++)
                 .type(ROOM_TYPE.LIVING_ROOM)
+                .name("Living Room")
                 .addAppliance(factory.createAppliance("TV"))
                 .addAppliance(factory.createAppliance("Smart Speaker"))
                 .build();
@@ -32,6 +34,7 @@ public class RoomDirector {
         return builder
                 .id(counter++)
                 .type(ROOM_TYPE.OFFICE)
+                .name("Office")
                 .addAppliance(factory.createAppliance("Computer"))
                 .addAppliance(factory.createAppliance("Smart Speaker"))
                 .build();
@@ -41,6 +44,7 @@ public class RoomDirector {
         return builder
                 .id(counter++)
                 .type(ROOM_TYPE.BEDROOM)
+                .name("Bedroom")
                 .addAppliance(factory.createAppliance("TV"))
                 .addAppliance(factory.createAppliance("Smart Speaker"))
                 .addAppliance(factory.createAppliance("Computer"))
@@ -51,6 +55,7 @@ public class RoomDirector {
         return builder
                 .id(counter++)
                 .type(ROOM_TYPE.SHOWER)
+                .name("Shower")
                 .addAppliance(factory.createAppliance("Smart Speaker"))
                 .build();
     }
