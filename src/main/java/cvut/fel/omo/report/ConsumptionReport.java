@@ -2,12 +2,6 @@ package cvut.fel.omo.report;
 
 import cvut.fel.omo.appliance.API.ApplianceAPI;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConsumptionReport extends AbstractReport {
     private static int counter = 0;
 

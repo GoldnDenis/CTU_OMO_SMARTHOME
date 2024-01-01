@@ -8,7 +8,7 @@ import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.event.GlobalEventAccumulator;
 import cvut.fel.omo.home.SmartHome;
-import cvut.fel.omo.report.*;
+import cvut.fel.omo.report.ReportHub;
 import cvut.fel.omo.sensor.GlobalEventDetector;
 import cvut.fel.omo.sensor.GlobalEventListener;
 
@@ -17,15 +17,18 @@ import java.util.Optional;
 
 public class Simulation {
 
-    public void run(String configFile) {
+    public void run(String configPath) {
         ConfigReader config = new ConfigReader();
+        ReportHub reportHub = new ReportHub();
 
-        config.readJson(configFile);
-
+        String configFile = "preset";
+        if (config.readJson(configPath)) {
+            configFile = configPath;
+        }
         List<CreatureAPI> creatures = config.setUpCreatures();
         SmartHome home = config.setUpHome();
 
-        HouseConfigurationReport.generateReport(config.getConfig());
+        reportHub.generateHouseConfigurationReport(configFile, config.getConfig());
 
         GlobalEventAccumulator globalEventAccumulator = new GlobalEventAccumulator();
         GlobalEventDetector globalEventDetector = new GlobalEventDetector();
@@ -68,11 +71,10 @@ public class Simulation {
 
                 );
 
-                creatures.stream()
-                        .forEach(creatureAPI -> {
-                            creatureAPI.move(home.getRooms());
-                            creatureAPI.interact(home.getRooms());
-                        });
+                creatures.forEach(creatureAPI -> {
+                    creatureAPI.move(home.getRooms());
+                    creatureAPI.interact(home.getRooms());
+                });
 
                 home.getRooms().stream()
                         .flatMap(room -> room.getAppliances().stream())
@@ -81,19 +83,16 @@ public class Simulation {
             }
         }
 
-        creatures.stream()
-                .forEach(ActivityAndUsageReport::generateReport);
-
+        creatures.forEach(reportHub::generateActivityAndUsageReport);
         home.getRooms().stream()
                 .flatMap(room -> room.getAppliances().stream())
                 .forEach(applianceAPI -> {
-                    EventReport.generateLocalReport(applianceAPI);
-                    ConsumptionReport.generateReport(applianceAPI);
+                    reportHub.generateLocalEventReport(applianceAPI);
+                    reportHub.generateConsumptionReport(applianceAPI);
                 });
+        reportHub.generateGlobalEventReport(globalEventAccumulator);
 
-        EventReport.generateGlobalReport(globalEventAccumulator);
-
-        ReportHub.saveAllReports();
+        reportHub.saveAllReports();
     }
 
     private Optional<GLOBAL_EVENT> generateGlobalEvent() {

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.factory.CreatureFactory;
 import cvut.fel.omo.home.SmartHome;
-import cvut.fel.omo.report.HouseConfigurationReport;
 import lombok.Getter;
 
 import java.io.File;
@@ -17,21 +16,18 @@ public class ConfigReader {
     @Getter
     private ImmutableConfig config;
 
-    public void readJson(String filePath) {
+    public boolean readJson(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
-
-        String configFile;
 
         try {
             config = objectMapper.readValue(new File(filePath), ImmutableConfig.class);
-            configFile = filePath;
         } catch (IOException e) {
             System.err.println("Something went wrong with the specified config file\nLoading a preset configurations");
             config = getStandardConfig();
-            configFile = "preset";
+            return false;
         }
 
-        HouseConfigurationReport.generateReport(configFile);
+        return true;
     }
 
     private ImmutableConfig getStandardConfig() {
