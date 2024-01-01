@@ -52,12 +52,12 @@ public class Simulation {
                                 .forEach(creatureAPI -> applianceAPI.attach(new LocalEventListener(creatureAPI)))
                 );
 
-        LocalEventDetector localEventDetector = new LocalEventDetector();
-        creatures.stream()
-                .filter(creatureAPI -> creatureAPI instanceof Adult)
-                .forEach(creatureAPI ->
-                        localEventDetector.attach(new LocalEventListener(creatureAPI))
-                );
+//        LocalEventDetector localEventDetector = new LocalEventDetector();
+//        creatures.stream()
+//                .filter(creatureAPI -> creatureAPI instanceof Adult)
+//                .forEach(creatureAPI ->
+//                        localEventDetector.attach(new LocalEventListener(creatureAPI))
+//                );
 
         for (int day = 1; day <= config.getDuration(); ++day) {
             for (int hour = 0; hour < 24; ++hour) {

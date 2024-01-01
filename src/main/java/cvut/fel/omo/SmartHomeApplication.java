@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class SmartHomeApplication {
 
 	public static void main(String[] args) {
-        ConfigGenerator.createJSON(1, List.of("Musta Adult", "Denis Adult", "Danny Child"), List.of("Shower", "Living Room"));
+        ConfigGenerator.createJSON(7, List.of("Musta Adult", "Denis Child", "Danny Child"), List.of("Shower", "Living Room"));
 
 		Simulation simulation = new Simulation();
 		simulation.run();
