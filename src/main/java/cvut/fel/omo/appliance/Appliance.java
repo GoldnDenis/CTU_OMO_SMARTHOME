@@ -13,12 +13,12 @@ public class Appliance {
     private ResourceConsumption consumption;
     private Manual manual;
 
-    public void printId() {
-        System.out.println(this);
-    }
-
     public int getRequiredTime() {
         return consumption.getRequiredTime();
+    }
+
+    public void updateConsumption() {
+        consumption.update();
     }
 
     @Override
@@ -28,6 +28,10 @@ public class Appliance {
                 ", id=" + id + '\'' +
                 '}';
     }
+
+    public double getConsumedElectricity() {return consumption.getConsumedElectricity();}
+
+    public double getConsumedWater() {return consumption.getConsumedWater();}
 
     public void setConsumptionPercent(double percent) {
         consumption.setPercent(percent);

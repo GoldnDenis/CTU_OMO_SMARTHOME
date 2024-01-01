@@ -5,9 +5,10 @@ import lombok.Setter;
 
 @Getter
 public class ResourceConsumption {
+    @Getter
     private double consumedElectricity;
+    @Getter
     private double consumedWater;
-    private double consumedTime;
 
     private final int requiredElectricity;
     private final int requiredWater;
@@ -16,7 +17,6 @@ public class ResourceConsumption {
     public ResourceConsumption(int requiredElectricity, int requiredWater, int requiredTime) {
         this.consumedElectricity = 0;
         this.consumedWater = 0;
-        this.consumedTime = 0;
 
         this.requiredElectricity = requiredElectricity;
         this.requiredWater = requiredWater;
@@ -26,9 +26,8 @@ public class ResourceConsumption {
     @Setter
     private double percent;
 
-    public void update(int secondsElapsed) {
-        consumedTime += secondsElapsed;
-        consumedElectricity += secondsElapsed * (requiredElectricity * percent);
-        consumedWater += secondsElapsed * (requiredWater * percent);
+    public void update() {
+        consumedElectricity += (requiredElectricity * percent);
+        consumedWater += (requiredWater * percent);
     }
 }

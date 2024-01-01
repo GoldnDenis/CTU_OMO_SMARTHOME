@@ -43,6 +43,14 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     }
 
+    public void updateConsumption() {
+        appliance.updateConsumption();
+    }
+
+    public double getConsumedElectricity() {return appliance.getConsumedElectricity();}
+
+    public double getConsumedWater() {return appliance.getConsumedWater();}
+
     public String getName() {
         return appliance.getName();
     }

@@ -5,13 +5,15 @@ import cvut.fel.omo.creature.API.CreatureAPI;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class EventReport {
-    private static List<String> reportList;
+    private static final List<String> reportList = new ArrayList<>();
 
     public static void generateReport() {
+
     }
 
     public static void saveReport() {
