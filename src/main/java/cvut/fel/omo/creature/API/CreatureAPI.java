@@ -17,8 +17,8 @@ public abstract class CreatureAPI {
     @Getter
     protected final Creature creature;
 
-    public CreatureAPI(String name) {
-        this.creature = new Creature(name);
+    public CreatureAPI(String name, String type) {
+        this.creature = new Creature(name, type);
     }
 
     public abstract void accept(ApplianceVisitor visitor);
@@ -92,4 +92,5 @@ public abstract class CreatureAPI {
     public String getName() {
         return creature.getName();
     }
+    public String getType() {return creature.getType();}
 }

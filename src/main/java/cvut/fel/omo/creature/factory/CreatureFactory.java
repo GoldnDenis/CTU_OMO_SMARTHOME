@@ -15,9 +15,9 @@ public class CreatureFactory {
         CreatureAPI creature = null;
 
         switch (type) {
-            case "Adult" -> creature = new Adult(name);
-            case "Child" -> creature = new Child(name);
-            case "Animal" -> creature = new Animal(name);
+            case "Adult" -> creature = new Adult(name, type);
+            case "Child" -> creature = new Child(name, type);
+            case "Animal" -> creature = new Animal(name, type);
             default -> Logging.log(Level.WARNING, type + " is not a viable creature");
         }
 

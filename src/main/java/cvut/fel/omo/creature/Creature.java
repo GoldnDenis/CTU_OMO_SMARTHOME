@@ -16,6 +16,7 @@ public class Creature {
 
     private int id;
     private String name;
+    private String type;
 
     private Map<String, Integer> usageMap;
 
@@ -31,11 +32,12 @@ public class Creature {
     @Setter
     private Room curLocation;
 
-    public Creature(String name) {
+    public Creature(String name, String type) {
         counter++;
 
         this.id = counter;
         this.name = name;
+        this.type = type;
         this.busyFor = 0;
         this.isRepairing = false;
         this.usageMap = new HashMap<>();

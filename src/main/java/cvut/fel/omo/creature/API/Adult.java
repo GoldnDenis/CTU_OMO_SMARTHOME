@@ -5,8 +5,8 @@ import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
 public class Adult extends CreatureAPI {
 
-    public Adult(String name) {
-        super(name);
+    public Adult(String name, String type) {
+        super(name, type);
     }
 
     @Override
@@ -34,5 +34,4 @@ public class Adult extends CreatureAPI {
         creature.setBusyFor(visitor.getRequiredTime());
         visitor.visitAdult(this);
     }
-
 }

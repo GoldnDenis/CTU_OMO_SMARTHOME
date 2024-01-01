@@ -5,8 +5,8 @@ import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
 public class Animal extends CreatureAPI {
 
-    public Animal(String name) {
-        super(name);
+    public Animal(String name, String type) {
+        super(name, type);
     }
 
     @Override

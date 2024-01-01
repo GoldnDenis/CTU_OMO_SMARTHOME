@@ -3,6 +3,7 @@ package cvut.fel.omo.system;
 import cvut.fel.omo.appliance.LocalEventDetector;
 import cvut.fel.omo.appliance.state.Active;
 import cvut.fel.omo.appliance.API.ApplianceAPI;
+import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.Creature;
@@ -10,6 +11,10 @@ import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.home.Room;
 import cvut.fel.omo.home.SmartHome;
+import cvut.fel.omo.report.ActivityAndUsageReport;
+import cvut.fel.omo.report.ConsumptionReport;
+import cvut.fel.omo.report.HouseConfigurationReport;
+import cvut.fel.omo.report.ReportHub;
 import cvut.fel.omo.sensor.GlobalEventDetector;
 import cvut.fel.omo.sensor.GlobalEventListener;
 
@@ -27,6 +32,8 @@ public class Simulation {
         config.readJson("config1.json");
         List<CreatureAPI> creatures = config.setUpCreatures();
         SmartHome home = config.setUpHome();
+
+        HouseConfigurationReport.generateReport(config.getConfig());
 
         GlobalEventDetector globalEventDetector = new GlobalEventDetector();
         home.getRooms()
@@ -71,8 +78,22 @@ public class Simulation {
                             creatureAPI.move(home.getRooms());
                             creatureAPI.interact(home.getRooms());
                         });
+
+                home.getRooms().stream()
+                        .flatMap(room -> room.getAppliances().stream())
+                        .filter(applianceAPI -> ! (applianceAPI.getState() instanceof Off))
+                        .forEach(ApplianceAPI::updateConsumption);
             }
         }
+
+        creatures.stream()
+                .forEach(ActivityAndUsageReport::generateReport);
+
+        home.getRooms().stream()
+                .flatMap(room -> room.getAppliances().stream())
+                        .forEach(ConsumptionReport::generateReport);
+
+        ReportHub.saveAllReports();
     }
 
     private Optional<GLOBAL_EVENT> generateGlobalEvent() {
