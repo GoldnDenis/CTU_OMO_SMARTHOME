@@ -9,10 +9,14 @@ import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
+import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.RandomGenerator;
 import lombok.Getter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class ApplianceAPI implements ApplianceVisitor {
     protected static int counter = 1;
@@ -27,6 +31,7 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
     public ApplianceAPI() {
         this.appliance = new Appliance();
         appliance.setId(counter++);
+        appliance.setBreakDownMap(new HashMap<>());
         this.state = new Off(this);
         this.localEventDetector = new LocalEventDetector();
     }
@@ -111,8 +116,9 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public boolean isAvailable() { return !isActive() || !isBroken();}
 
-    protected void breakingDownChance(double chance) {
+    protected void breakingDownChance(double chance, CreatureAPI creatureAPI) {
         if (RandomGenerator.hasHappened(chance)) {
+            appliance.putBreakDownMap(creatureAPI.getName());
             this.breakDown();
         }
     }
@@ -127,6 +133,10 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public void notifyFirstNotBusy() {
         localEventDetector.notifyFirstNotBusy(this);
+    }
+
+    public Map<String, Integer> getBreakdownMap() {
+        return appliance.getBreakDownMap();
     }
 
 }

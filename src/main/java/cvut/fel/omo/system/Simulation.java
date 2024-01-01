@@ -9,12 +9,10 @@ import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
+import cvut.fel.omo.event.GlobalEventAccumulator;
 import cvut.fel.omo.home.Room;
 import cvut.fel.omo.home.SmartHome;
-import cvut.fel.omo.report.ActivityAndUsageReport;
-import cvut.fel.omo.report.ConsumptionReport;
-import cvut.fel.omo.report.HouseConfigurationReport;
-import cvut.fel.omo.report.ReportHub;
+import cvut.fel.omo.report.*;
 import cvut.fel.omo.sensor.GlobalEventDetector;
 import cvut.fel.omo.sensor.GlobalEventListener;
 
@@ -35,6 +33,7 @@ public class Simulation {
 
         HouseConfigurationReport.generateReport(config.getConfig());
 
+        GlobalEventAccumulator globalEventAccumulator = new GlobalEventAccumulator();
         GlobalEventDetector globalEventDetector = new GlobalEventDetector();
         home.getRooms()
                 .stream()
@@ -65,13 +64,21 @@ public class Simulation {
 
                 if (hour == 6) {
                     globalEventDetector.notifyAll(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
+                    globalEventAccumulator.accumulateGlobalEvent(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
                 }
 
                 if (hour == 19) {
                     globalEventDetector.notifyAll(GLOBAL_EVENT.NIGHT_FELL);
+                    globalEventAccumulator.accumulateGlobalEvent(GLOBAL_EVENT.NIGHT_FELL);
                 }
 
-                generateGlobalEvent().ifPresent(globalEventDetector::notifyAll);
+                generateGlobalEvent().ifPresent(
+                        globalEvent -> {
+                            globalEventAccumulator.accumulateGlobalEvent(globalEvent);
+                            globalEventDetector.notifyAll(globalEvent);
+                        }
+
+                );
 
 //                List<ApplianceAPI> brokenAppliances =
 //                        home.getRooms()
@@ -100,19 +107,24 @@ public class Simulation {
 
         home.getRooms().stream()
                 .flatMap(room -> room.getAppliances().stream())
-                        .forEach(ConsumptionReport::generateReport);
+                        .forEach(applianceAPI -> {
+                            EventReport.generateLocalReport(applianceAPI);
+                            ConsumptionReport.generateReport(applianceAPI);
+                        });
+
+        EventReport.generateGlobalReport(globalEventAccumulator);
 
         ReportHub.saveAllReports();
     }
 
     private Optional<GLOBAL_EVENT> generateGlobalEvent() {
-        if (RandomGenerator.hasHappened(0.1)) {
+        if (RandomGenerator.hasHappened(90)) {
             return Optional.of(GLOBAL_EVENT.ELECTRICITY_SHUT_OFF);
         }
-        if (RandomGenerator.hasHappened(0.1)) {
+        if (RandomGenerator.hasHappened(90)) {
             return Optional.of(GLOBAL_EVENT.WATER_SHUT_OFF);
         }
-        if (RandomGenerator.hasHappened(0.1)) {
+        if (RandomGenerator.hasHappened(90)) {
             return Optional.of(GLOBAL_EVENT.NON_SATISFYING_TEMP);
         }
         return Optional.empty();

@@ -48,7 +48,7 @@ public class FoodDispenser extends ApplianceAPI {
                 "is eating small portion."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
     }
 
     @Override
@@ -61,7 +61,8 @@ public class FoodDispenser extends ApplianceAPI {
                 "is eating animal food."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
+
     }
 
     @Override

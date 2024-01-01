@@ -3,6 +3,8 @@ package cvut.fel.omo.appliance;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Map;
+
 @Getter
 @Setter
 public class Appliance {
@@ -12,6 +14,8 @@ public class Appliance {
 
     private ResourceConsumption consumption;
     private Manual manual;
+
+    private Map<String, Integer> breakDownMap;
 
     public int getRequiredTime() {
         return consumption.getRequiredTime();
@@ -40,4 +44,14 @@ public class Appliance {
     public int getTimeReqToFix() {
         return manual.getTimeReqToFix();
     }
+
+    public void putBreakDownMap(String key) {
+        if (breakDownMap.containsKey(key) ) {
+            int count = breakDownMap.get(key);
+            breakDownMap.put(key, ++count);
+        } else {
+            breakDownMap.put(key, 1);
+        }
+    }
+
 }

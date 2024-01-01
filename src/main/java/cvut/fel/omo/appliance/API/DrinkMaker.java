@@ -6,6 +6,7 @@ import cvut.fel.omo.appliance.constants.APPLIANCE_CONSUMP_INFO;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
+import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.Logging;
 
@@ -48,7 +49,7 @@ public class DrinkMaker extends ApplianceAPI {
                 "is drinking juice."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class DrinkMaker extends ApplianceAPI {
                 "is drinking juice."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override

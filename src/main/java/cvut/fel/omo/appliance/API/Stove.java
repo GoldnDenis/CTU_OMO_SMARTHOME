@@ -48,7 +48,7 @@ public class Stove extends ApplianceAPI {
                 "is preparing chicken nuggets."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Stove extends ApplianceAPI {
                 "is playing."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override

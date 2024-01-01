@@ -48,7 +48,8 @@ public class Refrigerator extends ApplianceAPI {
                 "is eating ice cream."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
+
     }
 
     @Override
@@ -61,7 +62,7 @@ public class Refrigerator extends ApplianceAPI {
                 "is playing."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override

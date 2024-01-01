@@ -47,7 +47,7 @@ public class Computer extends ApplianceAPI {
                 child.getName() ,
                 "is launching game."
         );
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Computer extends ApplianceAPI {
                 animal.getName() ,
                 "is playing"
         );
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override

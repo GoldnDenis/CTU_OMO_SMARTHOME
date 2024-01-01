@@ -49,7 +49,7 @@ public class TV extends ApplianceAPI {
                 "is watching a cartoon."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class TV extends ApplianceAPI {
                 "is watching a Nature Discovery channel."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override

@@ -14,9 +14,9 @@ import java.util.Optional;
 public class Creature {
     private static int counter = 0;
 
-    private int id;
-    private String name;
-    private String type;
+    private final int id;
+    private final String name;
+    private final String type;
 
     private Map<String, Integer> usageMap;
 

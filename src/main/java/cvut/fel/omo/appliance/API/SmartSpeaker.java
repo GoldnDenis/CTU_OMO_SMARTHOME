@@ -49,7 +49,8 @@ public class SmartSpeaker extends ApplianceAPI {
                 "is turning on rock music."
         );
 
-        this.breakingDownChance(30);
+        this.breakingDownChance(30, child);
+
     }
 
     @Override
@@ -62,7 +63,7 @@ public class SmartSpeaker extends ApplianceAPI {
                 "is turning on nature sounds."
         );
 
-        this.breakingDownChance(50);
+        this.breakingDownChance(50, animal);
     }
 
     @Override
