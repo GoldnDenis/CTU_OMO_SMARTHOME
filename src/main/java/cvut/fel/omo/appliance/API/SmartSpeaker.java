@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,25 +29,13 @@ public class SmartSpeaker extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-//        Logging.log(
-//                Level.INFO,
-//                this.toString(),
-//                adult.getName() ,
-//                "is turning on classical music."
-//        );
-        System.out.println(this + adult.getName() + " is turning on classical music.");
+        System.out.println(this + adult.getName() + " is listening to a classical music.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is turning on rock music."
-        );
-
+        System.out.println(this + child.getName() + " is listening to a rock music.");
         this.breakingDownChance(30, child);
 
     }
@@ -56,13 +43,7 @@ public class SmartSpeaker extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is turning on nature sounds."
-        );
-
+        System.out.println(this + animal.getName() + " is listening to the sounds of nature.");
         this.breakingDownChance(50, animal);
     }
 
@@ -73,10 +54,7 @@ public class SmartSpeaker extends ApplianceAPI {
                     -> this.turnOff();
             case SUN_HAS_RISEN_UP -> {
                 this.turnOn();
-                Logging.log(
-                        Level.INFO,
-                        "Playing the morning alarm."
-                );
+                System.out.println(this + "Morning alarm is ringing.");
                 this.sleep();
             }
         }

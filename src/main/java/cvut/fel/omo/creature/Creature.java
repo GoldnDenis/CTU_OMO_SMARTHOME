@@ -1,7 +1,6 @@
 package cvut.fel.omo.creature;
 
 import cvut.fel.omo.appliance.API.ApplianceAPI;
-
 import cvut.fel.omo.home.Room;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +13,8 @@ import java.util.Optional;
 public class Creature {
     private static int counter = 0;
 
-    private final int id;
-    private final String name;
-    private final String type;
+    private int id;
+    private String name;
 
     private Map<String, Integer> usageMap;
 
@@ -32,12 +30,11 @@ public class Creature {
     @Setter
     private Room curLocation;
 
-    public Creature(String name, String type) {
+    public Creature(String name) {
         counter++;
 
         this.id = counter;
         this.name = name;
-        this.type = type;
         this.busyFor = 0;
         this.isRepairing = false;
         this.usageMap = new HashMap<>();

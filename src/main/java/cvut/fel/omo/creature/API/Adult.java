@@ -5,8 +5,9 @@ import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
 public class Adult extends CreatureAPI {
 
-    public Adult(String name, String type) {
-        super(name, type);
+    public Adult(String name) {
+        super(name);
+        this.type = "Adult";
     }
 
     @Override

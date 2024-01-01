@@ -20,7 +20,7 @@ public interface ApplianceVisitor {
 
     boolean isBroken();
 
-    boolean isAvailable();
+//    boolean isAvailable();
 
     int getTimeReqToFix();
 

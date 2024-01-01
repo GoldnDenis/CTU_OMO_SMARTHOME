@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,37 +29,20 @@ public class Stove extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is preparing steak."
-        );
+        System.out.println(this + adult.getName() + " is preparing a perfect Medium-Rare steak.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is preparing chicken nuggets."
-        );
-
+        System.out.println(this + child.getName() + " is preparing chicken nuggets.");
         this.breakingDownChance(30, child);
     }
 
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is playing."
-        );
-
+        System.out.println(this + animal.getName() + " is playing in the kitchen.");
         this.breakingDownChance(50, animal);
     }
 
@@ -72,19 +54,11 @@ public class Stove extends ApplianceAPI {
             case SUN_HAS_RISEN_UP
                     -> this.sleep();
             case WATER_SHUT_OFF -> {
-                Logging.log(
-                        Level.INFO,
-                        "Not enough water! Going to idle mode.",
-                        this.toString()
-                );
+                System.out.println("Running low on water! Going idle until restored.");
                 this.sleep();
             }
             case NON_SATISFYING_TEMP -> {
-                Logging.log(
-                        Level.INFO,
-                        "Non satisfying temperature! Going to idle mode.",
-                        this.toString()
-                );
+                System.out.println("Not a suitable temperature! Going idle mode.");
                 this.sleep();
             }
         }

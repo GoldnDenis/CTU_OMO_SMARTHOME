@@ -1,8 +1,6 @@
 package cvut.fel.omo.appliance.factory;
 
-import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.*;
-import cvut.fel.omo.system.Logging;
 
 import java.util.Optional;
 import java.util.logging.Level;
@@ -19,7 +17,7 @@ public class ApplianceFactory {
             case "Smart Speaker" -> appliance = new SmartSpeaker();
             case "Stove" -> appliance = new Stove();
             case "TV" -> appliance = new TV();
-            default -> Logging.log(Level.WARNING, type + " is not a viable appliance");
+            default -> System.err.println(type + " is not a viable appliance");
         }
 
         return Optional.ofNullable(appliance);

@@ -1,6 +1,5 @@
 package cvut.fel.omo.report;
 
-import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.creature.API.CreatureAPI;
 
 import java.io.BufferedWriter;

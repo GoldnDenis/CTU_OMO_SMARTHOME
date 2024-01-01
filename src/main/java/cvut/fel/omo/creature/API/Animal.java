@@ -5,15 +5,16 @@ import cvut.fel.omo.appliance.API.ApplianceVisitor;
 
 public class Animal extends CreatureAPI {
 
-    public Animal(String name, String type) {
-        super(name, type);
+    public Animal(String name) {
+        super(name);
+        this.type = "Animal";
     }
 
     @Override
     public void accept(ApplianceVisitor visitor) {
-        if (!visitor.isAvailable()) {
-            return;
-        }
+//        if (!visitor.isAvailable()) {
+//            return;
+//        }
         if (this.isBusy()) {
             if (creature.getBusyFor() == 1) {
                 visitor.sleep();

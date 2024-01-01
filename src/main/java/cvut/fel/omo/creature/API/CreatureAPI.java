@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Getter
 public abstract class CreatureAPI {
-
-    @Getter
     protected final Creature creature;
+    protected String type;
 
-    public CreatureAPI(String name, String type) {
-        this.creature = new Creature(name, type);
+    public CreatureAPI(String name) {
+        this.creature = new Creature(name);
     }
 
     public abstract void accept(ApplianceVisitor visitor);
@@ -39,17 +39,55 @@ public abstract class CreatureAPI {
             if ( optionalAppliance.isPresent() ) {
                 ApplianceAPI appliance = optionalAppliance.get();
 
-                if ( !appliance.isAvailable() ) {
+                if ( appliance.isActive() || (appliance.isBroken() && !appliance.canFixBroken(this)) ) {
                     occupiedApplianceIndices.add(applianceIdx);
                     if ( occupiedApplianceIndices.size() == creature.getCurLocation().getAppliancesSize() ) {
                         occupiedRoomIndices.add(creature.getCurLocation().getId());
-                        if ( !changeRoomWithout(rooms, occupiedRoomIndices)) break;
+                        if ( !changeRoomWithout(rooms, occupiedRoomIndices)) {
+                            doRoutineWithoutAppliance();
+                            break;
+                        }
                     }
-                } else {
-                    accept(appliance);
+                    continue;
                 }
+                accept(appliance);
             }
         }
+    }
+
+    public void doRoutineWithoutAppliance() {
+        String routine = type.equals("Animal") ? doAnimalRoutine() : doHumanRoutine();
+        System.out.println(getName() + routine);
+    }
+
+    private String doHumanRoutine() {
+        String routine;
+        int activityId = RandomGenerator.generateNumber(10);
+        if ( activityId < 2) {
+            routine = " has gone for a walk.";
+        } else if (activityId < 4) {
+            routine = " is riding a bicycle.";
+        } else if (activityId < 6) {
+            routine = " is working out.";
+        } else if (activityId < 8) {
+            routine = " has went for a nap.";
+        } else {
+            routine = " is reading a book.";
+        }
+        return routine;
+    }
+
+    private String doAnimalRoutine() {
+        String routine;
+        int activityId = RandomGenerator.generateNumber(10);
+        if ( activityId < 5) {
+            routine = " is taking a nap.";
+        } else if (activityId < 7) {
+            routine = " is playing outside.";
+        } else {
+            routine = " is communicating with neighboring animals";
+        }
+        return routine;
     }
 
     public void move(List<Room> rooms) {
@@ -92,5 +130,4 @@ public abstract class CreatureAPI {
     public String getName() {
         return creature.getName();
     }
-    public String getType() {return creature.getType();}
 }

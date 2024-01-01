@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,38 +29,20 @@ public class TV extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-//        Logging.log(
-//                Level.INFO,
-//                this.toString(),
-//                adult.getName() ,
-//                "is watching a drama movie."
-//        );
-        System.out.println(this + adult.getName() + " is watching a drama movie.");
+        System.out.println(this + adult.getName() + " is watching a drama.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is watching a cartoon."
-        );
-
+        System.out.println(this + child.getName() + " is watching a cartoon.");
         this.breakingDownChance(30, child);
     }
 
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is watching a Nature Discovery channel."
-        );
-
+        System.out.println(this + animal.getName() + " is observing a nature documentary.");
         this.breakingDownChance(50, animal);
     }
 

@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,23 +29,13 @@ public class FoodDispenser extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is eating big portion."
-        );
+        System.out.println(this + adult.getName() + " is having a nice meal.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is eating small portion."
-        );
+        System.out.println(this + child.getName() + " is snacking on some chips.");
 
         this.breakingDownChance(30, child);
     }
@@ -54,12 +43,7 @@ public class FoodDispenser extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is eating animal food."
-        );
+        System.out.println(this + animal.getName() + " is eating an animal food.");
 
         this.breakingDownChance(50, animal);
 
@@ -72,19 +56,11 @@ public class FoodDispenser extends ApplianceAPI {
                     -> this.turnOff();
             case SUN_HAS_RISEN_UP -> {
                 this.turnOn();
-                Logging.log(
-                        Level.INFO,
-                        "Serving breakfast.",
-                        this.toString()
-                );
+                System.out.println("Serving breakfast.");
                 this.sleep();
             }
             case WATER_SHUT_OFF -> {
-                Logging.log(
-                        Level.INFO,
-                        "Not enough water! Going to idle mode.",
-                        this.toString()
-                );
+                System.out.println("Running low on water! Going idle until restored.");
                 this.sleep();
             }
         }

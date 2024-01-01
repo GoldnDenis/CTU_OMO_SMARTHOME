@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,24 +29,13 @@ public class Refrigerator extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is drinking beer."
-        );
+        System.out.println(this + adult.getName() + " is getting a bottle of beer.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is eating ice cream."
-        );
-
+        System.out.println(this + child.getName() + " is getting an ice cream.");
         this.breakingDownChance(30, child);
 
     }
@@ -55,13 +43,7 @@ public class Refrigerator extends ApplianceAPI {
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is playing."
-        );
-
+        System.out.println(this + animal.getName() + " is playing with the fridge's door.");
         this.breakingDownChance(50, animal);
     }
 

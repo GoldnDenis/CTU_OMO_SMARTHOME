@@ -2,7 +2,6 @@ package cvut.fel.omo.system;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cvut.fel.omo.creature.API.CreatureAPI;
-import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.creature.factory.CreatureFactory;
 import cvut.fel.omo.home.SmartHome;
 import cvut.fel.omo.report.HouseConfigurationReport;
@@ -10,7 +9,9 @@ import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 
 public class ConfigReader {
@@ -26,7 +27,7 @@ public class ConfigReader {
             config = objectMapper.readValue(new File(filePath), ImmutableConfig.class);
             configFile = filePath;
         } catch (IOException e) {
-            Logging.log(Level.WARNING, "Something went wrong with the specified config file\nLoading a preset configurations");
+            System.err.println("Something went wrong with the specified config file\nLoading a preset configurations");
             config = getStandardConfig();
             configFile = "preset";
         }

@@ -1,14 +1,12 @@
 package cvut.fel.omo.report;
 
 import cvut.fel.omo.appliance.API.ApplianceAPI;
-import cvut.fel.omo.creature.API.CreatureAPI;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ConsumptionReport {
     private static final List<String> reportList = new ArrayList<>();

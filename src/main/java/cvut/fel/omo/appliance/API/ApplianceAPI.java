@@ -19,8 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ApplianceAPI implements ApplianceVisitor {
-    protected static int counter = 1;
-
+    protected static int counter = 0;
     protected final Appliance appliance;
 
     protected LocalEventDetector localEventDetector;
@@ -30,7 +29,7 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public ApplianceAPI() {
         this.appliance = new Appliance();
-        appliance.setId(counter++);
+        appliance.setId(++counter);
         appliance.setBreakDownMap(new HashMap<>());
         this.state = new Off(this);
         this.localEventDetector = new LocalEventDetector();
@@ -114,7 +113,7 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         return this.state instanceof Active;
     }
 
-    public boolean isAvailable() { return !isActive() || !isBroken();}
+    public boolean canFixBroken(CreatureAPI creature) { return isBroken() && creature.getType().equals("Adult");}
 
     protected void breakingDownChance(double chance, CreatureAPI creatureAPI) {
         if (RandomGenerator.hasHappened(chance)) {

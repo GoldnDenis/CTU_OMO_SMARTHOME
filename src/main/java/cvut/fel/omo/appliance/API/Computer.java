@@ -7,7 +7,6 @@ import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.Logging;
 
 import java.util.logging.Level;
 
@@ -30,35 +29,20 @@ public class Computer extends ApplianceAPI {
     @Override
     public void visitAdult(Adult adult) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                adult.getName() ,
-                "is launching work application."
-        );
+        System.out.println(this + adult.getName() + " is working on OMO project.");
     }
 
     @Override
     public void visitChild(Child child) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                child.getName() ,
-                "is launching game."
-        );
+        System.out.println(this + child.getName() + " is playing Doom.");
         this.breakingDownChance(30, child);
     }
 
     @Override
     public void visitAnimal(Animal animal) {
         this.turnOn();
-        Logging.log(
-                Level.INFO,
-                this.toString(),
-                animal.getName() ,
-                "is playing"
-        );
+        System.out.println(this + animal.getName() + " is napping on the keyboard.");
         this.breakingDownChance(50, animal);
     }
 
@@ -66,11 +50,7 @@ public class Computer extends ApplianceAPI {
     public void react(GLOBAL_EVENT event) {
         switch (event) {
             case NON_SATISFYING_TEMP -> {
-                Logging.log(
-                        Level.INFO,
-                        "Overheating! going to idle mode!",
-                        this.toString()
-                );
+                System.out.println(this + "Overheating!!! Switching to an idle mode.");
                 this.sleep();
             }
             case NIGHT_FELL

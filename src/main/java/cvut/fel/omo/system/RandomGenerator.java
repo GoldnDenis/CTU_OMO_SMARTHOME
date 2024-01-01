@@ -11,7 +11,8 @@ public class RandomGenerator {
     }
 
     public static int generateNumberWithout(int bound, List<Integer> exclude) {
-        if ( exclude.isEmpty() ) return generateNumber(bound);
+        if ( exclude.isEmpty() || exclude.size() >= bound)
+            return generateNumber(bound);
 
         int ret = exclude.get(0);
         while ( exclude.contains(ret) ) {

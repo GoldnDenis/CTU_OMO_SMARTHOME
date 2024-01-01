@@ -2,8 +2,6 @@ package cvut.fel.omo.system;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import cvut.fel.omo.creature.API.CreatureAPI;
-import cvut.fel.omo.creature.Creature;
 
 import java.io.File;
 import java.io.IOException;
