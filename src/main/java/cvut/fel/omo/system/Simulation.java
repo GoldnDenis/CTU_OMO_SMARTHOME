@@ -19,11 +19,11 @@ public class Simulation {
     private SmartHome home;
     private List<CreatureAPI> creatures;
 
-    private GlobalEventDetector globalEventDetector;
-    private ConfigReader config;
+    private final GlobalEventDetector globalEventDetector;
+    private final ConfigReader config;
 
-    private ReportHub reportHub;
-    private GlobalEventAccumulator globalEventAccumulator;
+    private final ReportHub reportHub;
+    private final GlobalEventAccumulator globalEventAccumulator;
 
     public Simulation() {
         this.config = new ConfigReader();
@@ -33,14 +33,16 @@ public class Simulation {
     }
 
     public void run(String configPath) {
-
         String configFile = getConfig(configPath);
         setUpSim();
 
-        reportHub.generateHouseConfigurationReport(configFile, config.getConfig());
-
         setUpEventDetectors();
+        startSimulationLoop();
 
+        processReportInfo(configFile);
+    }
+
+    private void startSimulationLoop() {
         for (int day = 1; day <= config.getDuration(); ++day) {
             System.out.println("(" + day + ")_Day_(" + day + ")");
             for (int hour = 0; hour < 24; ++hour) {
@@ -65,7 +67,10 @@ public class Simulation {
                         .forEach(ApplianceAPI::updateConsumption);
             }
         }
+    }
 
+    private void processReportInfo(String configFile) {
+        reportHub.generateHouseConfigurationReport(configFile, config.getConfig());
         creatures.forEach(reportHub::generateActivityAndUsageReport);
         getAppliances()
                 .forEach(applianceAPI -> {
