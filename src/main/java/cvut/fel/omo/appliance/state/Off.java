@@ -15,7 +15,10 @@ public class Off extends ApplianceState {
 
     @Override
     public void breakDown() {
+        applianceAPI.setConsumptionPercent(STATE_CONSUMP_PERCENTAGE.NO_CONSUMPTION.getPercent());
         applianceAPI.changeState(new Broken(applianceAPI));
+        applianceAPI.notifyFirstNotBusy();
+        Logging.log(Level.INFO, MessageConvertor.isBrokenMsg(), applianceAPI.toString());
     }
 
     @Override

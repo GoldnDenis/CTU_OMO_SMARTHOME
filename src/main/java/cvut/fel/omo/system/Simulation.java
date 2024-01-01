@@ -43,6 +43,15 @@ public class Simulation {
                         globalEventDetector.attach(new GlobalEventListener(applianceAPI))
                 );
 
+        home.getRooms()
+                .stream()
+                .flatMap(room -> room.getAppliances().stream())
+                .forEach(applianceAPI ->
+                        creatures.stream()
+                                .filter(creatureAPI -> creatureAPI instanceof Adult)
+                                .forEach(creatureAPI -> applianceAPI.attach(new LocalEventListener(creatureAPI)))
+                );
+
         LocalEventDetector localEventDetector = new LocalEventDetector();
         creatures.stream()
                 .filter(creatureAPI -> creatureAPI instanceof Adult)
@@ -64,14 +73,14 @@ public class Simulation {
 
                 generateGlobalEvent().ifPresent(globalEventDetector::notifyAll);
 
-                List<ApplianceAPI> brokenAppliances =
-                        home.getRooms()
-                                .stream()
-                                .flatMap(room -> room.getAppliances().stream())
-                                .filter(ApplianceAPI::isBroken)
-                                .collect(Collectors.toList());
-
-                brokenAppliances.forEach(localEventDetector::notifyFirstNotBusy);
+//                List<ApplianceAPI> brokenAppliances =
+//                        home.getRooms()
+//                                .stream()
+//                                .flatMap(room -> room.getAppliances().stream())
+//                                .filter(ApplianceAPI::isBroken)
+//                                .collect(Collectors.toList());
+//
+//                brokenAppliances.forEach(localEventDetector::notifyFirstNotBusy);
 
                 creatures.stream()
                         .forEach(creatureAPI -> {

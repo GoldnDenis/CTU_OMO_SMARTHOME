@@ -19,6 +19,8 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     protected final Appliance appliance;
 
+    protected LocalEventDetector localEventDetector;
+
     @Getter
     protected ApplianceState state;
 
@@ -26,6 +28,7 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         this.appliance = new Appliance();
         appliance.setId(counter++);
         this.state = new Off(this);
+        this.localEventDetector = new LocalEventDetector();
     }
 
     @Override
@@ -116,6 +119,14 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public int getTimeReqToFix() {
         return appliance.getTimeReqToFix();
+    }
+
+    public void attach(LocalEventListener listener) {
+        localEventDetector.attach(listener);
+    }
+
+    public void notifyFirstNotBusy() {
+        localEventDetector.notifyFirstNotBusy(this);
     }
 
 }

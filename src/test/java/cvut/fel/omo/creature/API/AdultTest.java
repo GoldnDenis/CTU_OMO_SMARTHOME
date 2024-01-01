@@ -13,7 +13,7 @@ class AdultTest {
 
     @BeforeEach
     void setUpAdult() {
-        adult = new Adult("Test");
+        adult = new Adult("Test", "Adult");
         computer = new Computer();
     }
 
