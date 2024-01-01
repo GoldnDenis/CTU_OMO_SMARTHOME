@@ -8,6 +8,8 @@ At the start application loads configuration json file, if none was found a stan
 In the simulation the minimal time unit is an hour. Each hour takes places some kind of action, either it's an interaction between creatures and appliances or some unexpected event, e.g. power shortage. Every interaction is outputed in the console and in the end 5 main report files are saved.
 
 ## Configuration parameters
+   For a more comfortable config creation, there is a class ConfigGenerator which is mostly prepared for the use in the main, needs just to be uncommented and edited (java doc is in place).
+
 - simulation_duration - an positive integer number which represents a number of days the simulation will play out.
 - List<Creature> - a list of creatures, in format "name type". Available types are: {Adult, Child, Animal}
 - List<Room> - a list of rooms in the House, in format "type". Available types are: {Living Room, Bedroom, Kitchen, Office, Shower}
