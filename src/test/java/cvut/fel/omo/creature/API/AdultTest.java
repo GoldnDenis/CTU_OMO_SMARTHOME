@@ -1,11 +1,11 @@
 package cvut.fel.omo.creature.API;
 
 import cvut.fel.omo.appliance.API.Computer;
+import cvut.fel.omo.appliance.state.Broken;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AdultTest {
     Adult adult;
@@ -13,7 +13,7 @@ class AdultTest {
 
     @BeforeEach
     void setUpAdult() {
-        adult = new Adult("Test", "Adult");
+        adult = new Adult("Test");
         computer = new Computer();
     }
 
@@ -39,5 +39,17 @@ class AdultTest {
         assertTrue(adult.isRepairing());
         assertEquals(adult.creature.getBusyFor(), computer.getTimeReqToFix());
     }
+
+    @Test
+    void repairApplianceTest() {
+        computer.breakDown();
+
+        for (int i = 0; i < computer.getTimeReqToFix() + 1; i++) {
+            adult.accept(computer);
+        }
+
+        assertFalse(computer.getState() instanceof Broken);
+    }
+
 
 }

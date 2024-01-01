@@ -16,37 +16,30 @@ import java.util.List;
 import java.util.Optional;
 
 public class Simulation {
+    private SmartHome home;
+    private List<CreatureAPI> creatures;
+
+    private GlobalEventDetector globalEventDetector;
+    private ConfigReader config;
+
+    private ReportHub reportHub;
+    private GlobalEventAccumulator globalEventAccumulator;
+
+    public Simulation() {
+        this.config = new ConfigReader();
+        this.reportHub = new ReportHub();
+        this.globalEventAccumulator = new GlobalEventAccumulator();
+        this.globalEventDetector = new GlobalEventDetector();
+    }
 
     public void run(String configPath) {
-        ConfigReader config = new ConfigReader();
-        ReportHub reportHub = new ReportHub();
 
-        String configFile = "preset";
-        if (config.readJson(configPath)) {
-            configFile = configPath;
-        }
-        List<CreatureAPI> creatures = config.setUpCreatures();
-        SmartHome home = config.setUpHome();
+        String configFile = getConfig(configPath);
+        setUpSim();
 
         reportHub.generateHouseConfigurationReport(configFile, config.getConfig());
 
-        GlobalEventAccumulator globalEventAccumulator = new GlobalEventAccumulator();
-        GlobalEventDetector globalEventDetector = new GlobalEventDetector();
-        home.getRooms()
-                .stream()
-                .flatMap(room -> room.getAppliances().stream())
-                .forEach(applianceAPI ->
-                        globalEventDetector.attach(new GlobalEventListener(applianceAPI))
-                );
-
-        home.getRooms()
-                .stream()
-                .flatMap(room -> room.getAppliances().stream())
-                .forEach(applianceAPI ->
-                        creatures.stream()
-                                .filter(creatureAPI -> creatureAPI instanceof Adult)
-                                .forEach(creatureAPI -> applianceAPI.attach(new LocalEventListener(creatureAPI)))
-                );
+        setUpEventDetectors();
 
         for (int day = 1; day <= config.getDuration(); ++day) {
             System.out.println("Day " + day + ")");
@@ -54,38 +47,27 @@ public class Simulation {
                 System.out.println("<-> " + hour + ":00 <->");
 
                 if (hour == 6) {
-                    globalEventDetector.notifyAll(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
-                    globalEventAccumulator.accumulateGlobalEvent(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
+                    notifyGlobalEvent(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
                 }
-
                 if (hour == 19) {
-                    globalEventDetector.notifyAll(GLOBAL_EVENT.NIGHT_FELL);
-                    globalEventAccumulator.accumulateGlobalEvent(GLOBAL_EVENT.NIGHT_FELL);
+                    notifyGlobalEvent(GLOBAL_EVENT.NIGHT_FELL);
                 }
-
-                generateGlobalEvent().ifPresent(
-                        globalEvent -> {
-                            globalEventAccumulator.accumulateGlobalEvent(globalEvent);
-                            globalEventDetector.notifyAll(globalEvent);
-                        }
-
-                );
+                generateGlobalEvent().ifPresent(this::notifyGlobalEvent);
 
                 creatures.forEach(creatureAPI -> {
                     creatureAPI.move(home.getRooms());
                     creatureAPI.interact(home.getRooms());
                 });
 
-                home.getRooms().stream()
-                        .flatMap(room -> room.getAppliances().stream())
+                getAppliances()
+                        .stream()
                         .filter(applianceAPI -> !(applianceAPI.getState() instanceof Off))
                         .forEach(ApplianceAPI::updateConsumption);
             }
         }
 
         creatures.forEach(reportHub::generateActivityAndUsageReport);
-        home.getRooms().stream()
-                .flatMap(room -> room.getAppliances().stream())
+        getAppliances()
                 .forEach(applianceAPI -> {
                     reportHub.generateLocalEventReport(applianceAPI);
                     reportHub.generateConsumptionReport(applianceAPI);
@@ -93,6 +75,51 @@ public class Simulation {
         reportHub.generateGlobalEventReport(globalEventAccumulator);
 
         reportHub.saveAllReports();
+    }
+
+    private String getConfig(String configPath) {
+        if (config.readJson(configPath)) {
+            return configPath;
+        }
+        return "preset";
+    }
+
+    private void setUpSim() {
+        this.creatures = config.setUpCreatures();
+        this.home = config.setUpHome();
+    }
+
+    private List<ApplianceAPI> getAppliances() {
+        return home.getRooms()
+                .stream()
+                .flatMap(room -> room.getAppliances().stream())
+                .toList();
+    }
+
+    private void setUpGlobalEventDetector() {
+        getAppliances()
+                .forEach(applianceAPI ->
+                        globalEventDetector.attach(new GlobalEventListener(applianceAPI))
+                );
+    }
+
+    private void setUpLocalEventDetector() {
+        getAppliances()
+                .forEach(applianceAPI ->
+                        creatures.stream()
+                                .filter(creatureAPI -> creatureAPI instanceof Adult)
+                                .forEach(creatureAPI -> applianceAPI.attach(new LocalEventListener(creatureAPI)))
+                );
+    }
+
+    private void setUpEventDetectors() {
+        setUpGlobalEventDetector();
+        setUpLocalEventDetector();
+    }
+
+    private void notifyGlobalEvent(GLOBAL_EVENT event) {
+        globalEventDetector.notifyAll(event);
+        globalEventAccumulator.accumulateGlobalEvent(event);
     }
 
     private Optional<GLOBAL_EVENT> generateGlobalEvent() {
@@ -107,4 +134,5 @@ public class Simulation {
         }
         return Optional.empty();
     }
+
 }

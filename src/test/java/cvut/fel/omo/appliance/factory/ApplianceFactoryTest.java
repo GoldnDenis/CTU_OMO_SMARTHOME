@@ -19,7 +19,7 @@ class ApplianceFactoryTest {
 
     @Test
     void wrongInputTest() {
-        String wrongInput = "Cumputer";
+        String wrongInput = "C0mputer";
 
         Optional<ApplianceAPI> applianceAPI = factory.createAppliance(wrongInput);
 
