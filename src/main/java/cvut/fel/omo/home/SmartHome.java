@@ -7,7 +7,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 @AllArgsConstructor
 @Getter
@@ -31,5 +30,7 @@ public class SmartHome {
         }
     }
 
-    public int getRoomSize() {return rooms.size();}
+    public int getRoomSize() {
+        return rooms.size();
+    }
 }

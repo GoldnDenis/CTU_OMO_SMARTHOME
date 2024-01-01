@@ -24,26 +24,28 @@ public abstract class CreatureAPI {
     public abstract void accept(ApplianceVisitor visitor);
 
     public void interact(List<Room> rooms) {
-        List<Integer> occupiedApplianceIndices = new ArrayList<>();
-        List<Integer> occupiedRoomIndices = new ArrayList<>();
-
-        if ( isBusy() ) {
+        if (isBusy()) {
             accept(getCreature().getCurrAppliance());
             return;
         }
 
-        while ( !isBusy() ) {
+        List<Integer> occupiedApplianceIndices = new ArrayList<>();
+        List<Integer> occupiedRoomIndices = new ArrayList<>();
+
+        while (!isBusy()) {
             int applianceIdx = RandomGenerator.generateNumberWithout(creature.getCurLocation().getAppliancesSize(), occupiedApplianceIndices);
 
             Optional<ApplianceAPI> optionalAppliance = creature.getApplianceInCurRoomByIdx(applianceIdx);
-            if ( optionalAppliance.isPresent() ) {
+            if (optionalAppliance.isPresent()) {
                 ApplianceAPI appliance = optionalAppliance.get();
 
-                if ( appliance.isActive() || (appliance.isBroken() && !appliance.canFixBroken(this)) ) {
+                if (appliance.isActive() || (appliance.isBroken() && !appliance.canFixBroken(this))) {
                     occupiedApplianceIndices.add(applianceIdx);
-                    if ( occupiedApplianceIndices.size() == creature.getCurLocation().getAppliancesSize() ) {
+                    if (occupiedApplianceIndices.size() == creature.getCurLocation().getAppliancesSize()) {
                         occupiedRoomIndices.add(creature.getCurLocation().getId());
-                        if ( !changeRoomWithout(rooms, occupiedRoomIndices)) {
+
+                        occupiedApplianceIndices.clear();
+                        if (!changeRoomWithout(rooms, occupiedRoomIndices)) {
                             doRoutineWithoutAppliance();
                             break;
                         }
@@ -63,7 +65,7 @@ public abstract class CreatureAPI {
     private String doHumanRoutine() {
         String routine;
         int activityId = RandomGenerator.generateNumber(10);
-        if ( activityId < 2) {
+        if (activityId < 2) {
             routine = " has gone for a walk.";
         } else if (activityId < 4) {
             routine = " is riding a bicycle.";
@@ -80,7 +82,7 @@ public abstract class CreatureAPI {
     private String doAnimalRoutine() {
         String routine;
         int activityId = RandomGenerator.generateNumber(10);
-        if ( activityId < 5) {
+        if (activityId < 5) {
             routine = " is taking a nap.";
         } else if (activityId < 7) {
             routine = " is playing outside.";
@@ -91,14 +93,14 @@ public abstract class CreatureAPI {
     }
 
     public void move(List<Room> rooms) {
-        if ( isBusy() ) return;
+        if (isBusy()) return;
 
         int roomIdx = RandomGenerator.generateNumber(rooms.size());
         creature.setCurLocation(rooms.get(roomIdx));
     }
 
     public boolean changeRoomWithout(List<Room> rooms, List<Integer> exclude) {
-        if ( rooms.size() == exclude.size() ) return false;
+        if (rooms.size() == exclude.size()) return false;
 
         int roomIdx = RandomGenerator.generateNumberWithout(rooms.size(), exclude);
         creature.setCurLocation(rooms.get(roomIdx));

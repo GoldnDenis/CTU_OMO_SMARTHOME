@@ -33,9 +33,13 @@ public class Appliance {
                 '}';
     }
 
-    public double getConsumedElectricity() {return consumption.getConsumedElectricity();}
+    public double getConsumedElectricity() {
+        return consumption.getConsumedElectricity();
+    }
 
-    public double getConsumedWater() {return consumption.getConsumedWater();}
+    public double getConsumedWater() {
+        return consumption.getConsumedWater();
+    }
 
     public void setConsumptionPercent(double percent) {
         consumption.setPercent(percent);
@@ -46,7 +50,7 @@ public class Appliance {
     }
 
     public void putBreakDownMap(String key) {
-        if (breakDownMap.containsKey(key) ) {
+        if (breakDownMap.containsKey(key)) {
             int count = breakDownMap.get(key);
             breakDownMap.put(key, ++count);
         } else {

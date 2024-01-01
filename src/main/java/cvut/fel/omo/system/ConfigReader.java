@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 
 public class ConfigReader {
     @Getter
@@ -37,7 +36,7 @@ public class ConfigReader {
 
     private ImmutableConfig getStandardConfig() {
         int simDuration = 7;
-        List <String> creatures = List.of(
+        List<String> creatures = List.of(
                 "Musta Adult", "Denis Adult", "Jiri Adult", "Alex Adult",
                 "Daniel Child", "Honda Child",
                 "Bonnie Animal", "Bobik Animal", "Murky Animal"
@@ -54,7 +53,7 @@ public class ConfigReader {
     public SmartHome setUpHome() {
         SmartHome home = new SmartHome();
 
-        for (String room: config.roomList()) {
+        for (String room : config.roomList()) {
             home.addNewRoom(room);
         }
 
@@ -65,7 +64,7 @@ public class ConfigReader {
         List<CreatureAPI> creatures = new ArrayList<>();
 
         CreatureFactory factory = new CreatureFactory();
-        for (String creatureElement: config.creatureList()) {
+        for (String creatureElement : config.creatureList()) {
             String[] components = creatureElement.split(" ");
             Optional<CreatureAPI> createdCreature = factory.createCreature(components[1], components[0]);
             createdCreature.ifPresent(creatures::add);

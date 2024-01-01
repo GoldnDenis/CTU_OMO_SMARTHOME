@@ -4,8 +4,6 @@ import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.constants.STATE_CONSUMP_PERCENTAGE;
 import cvut.fel.omo.system.MessageConvertor;
 
-import java.util.logging.Level;
-
 public class Broken extends ApplianceState {
 
     public Broken(ApplianceAPI applianceAPI) {

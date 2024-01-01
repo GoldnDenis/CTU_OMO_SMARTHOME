@@ -15,7 +15,7 @@ public class GlobalEventAccumulator {
     }
 
     public void accumulateGlobalEvent(GLOBAL_EVENT event) {
-        if (occurrenceMap.containsKey(event) ) {
+        if (occurrenceMap.containsKey(event)) {
             int count = occurrenceMap.get(event);
             occurrenceMap.put(event, ++count);
         } else {

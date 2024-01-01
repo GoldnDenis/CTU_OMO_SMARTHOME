@@ -10,6 +10,12 @@ import java.util.List;
 public class ConfigGenerator {
     private static int jsonCounter = 0;
 
+    /**
+     * Creates a config.json with desired parameters
+     * @param simDuration duration of the simulation, [days].
+     * @param creatureList creatures, [name type {Adult, Child, Animal}]
+     * @param roomList rooms, [type {Kitchen, Living Room, Bedroom, Office, Shower}]
+     */
     public static void createJSON(int simDuration, List<String> creatureList, List<String> roomList) {
         ImmutableConfig config = new ImmutableConfig(simDuration, creatureList, roomList);
         jsonCounter++;

@@ -11,11 +11,11 @@ public class RandomGenerator {
     }
 
     public static int generateNumberWithout(int bound, List<Integer> exclude) {
-        if ( exclude.isEmpty() || exclude.size() >= bound)
+        if (exclude.isEmpty() || exclude.size() >= bound)
             return generateNumber(bound);
 
         int ret = exclude.get(0);
-        while ( exclude.contains(ret) ) {
+        while (exclude.contains(ret)) {
             ret = generateNumber(bound);
         }
 
@@ -23,8 +23,8 @@ public class RandomGenerator {
     }
 
     public static boolean hasHappened(double percent) {
-        if ( percent <= 0 ) return false;
-        if ( percent >= 100 ) return true;
+        if (percent <= 0) return false;
+        if (percent >= 100) return true;
 
         return generateNumber(100) >= percent;
     }

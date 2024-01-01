@@ -9,12 +9,12 @@ import java.util.List;
 @Getter
 public class Room {
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
-    private ROOM_TYPE type; // todo:: check if necessary
+    private final ROOM_TYPE type; // todo:: check if necessary
 
-    private List<ApplianceAPI> appliances;
+    private final List<ApplianceAPI> appliances;
 
     public Room(RoomBuilder builder) {
         this.id = builder.getId();

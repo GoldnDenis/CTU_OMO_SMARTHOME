@@ -1,11 +1,11 @@
 package cvut.fel.omo.creature.API;
 
-import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.Computer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AdultTest {
     Adult adult;

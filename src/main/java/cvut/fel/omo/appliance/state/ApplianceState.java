@@ -4,7 +4,7 @@ import cvut.fel.omo.appliance.API.ApplianceAPI;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public abstract class ApplianceState{
+public abstract class ApplianceState {
 
     protected ApplianceAPI applianceAPI;
 

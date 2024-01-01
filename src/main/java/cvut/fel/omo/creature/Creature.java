@@ -13,10 +13,10 @@ import java.util.Optional;
 public class Creature {
     private static int counter = 0;
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
-    private Map<String, Integer> usageMap;
+    private final Map<String, Integer> usageMap;
 
     @Setter
     private int busyFor;
@@ -41,7 +41,7 @@ public class Creature {
     }
 
     public void putUsageMap(String key) {
-        if ( usageMap.containsKey(key) ) {
+        if (usageMap.containsKey(key)) {
             int count = usageMap.get(key);
             usageMap.put(key, ++count);
         } else {
@@ -54,7 +54,7 @@ public class Creature {
     }
 
     public Optional<ApplianceAPI> getApplianceInCurRoomByIdx(int idx) {
-        if ( idx > curLocation.getAppliancesSize() || idx < 0 ) return Optional.empty();
+        if (idx > curLocation.getAppliancesSize() || idx < 0) return Optional.empty();
         return Optional.of(curLocation.getAppliances().get(idx));
     }
 

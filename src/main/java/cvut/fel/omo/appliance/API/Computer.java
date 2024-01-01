@@ -8,8 +8,6 @@ import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
-import java.util.logging.Level;
-
 public class Computer extends ApplianceAPI {
 
     public Computer() {
@@ -53,10 +51,8 @@ public class Computer extends ApplianceAPI {
                 System.out.println(this + "Overheating!!! Switching to an idle mode.");
                 this.sleep();
             }
-            case NIGHT_FELL
-                    -> this.turnOff();
-            case SUN_HAS_RISEN_UP
-                    -> this.sleep();
+            case NIGHT_FELL -> this.turnOff();
+            case SUN_HAS_RISEN_UP -> this.sleep();
         }
     }
 

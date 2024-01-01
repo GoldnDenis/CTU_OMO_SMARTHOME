@@ -3,7 +3,6 @@ package cvut.fel.omo.appliance.factory;
 import cvut.fel.omo.appliance.API.*;
 
 import java.util.Optional;
-import java.util.logging.Level;
 
 public class ApplianceFactory {
     public Optional<ApplianceAPI> createAppliance(String type) {

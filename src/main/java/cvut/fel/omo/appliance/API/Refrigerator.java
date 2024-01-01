@@ -8,8 +8,6 @@ import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
-import java.util.logging.Level;
-
 public class Refrigerator extends ApplianceAPI {
 
     public Refrigerator() {

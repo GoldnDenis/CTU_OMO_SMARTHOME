@@ -54,9 +54,13 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         appliance.updateConsumption();
     }
 
-    public double getConsumedElectricity() {return appliance.getConsumedElectricity();}
+    public double getConsumedElectricity() {
+        return appliance.getConsumedElectricity();
+    }
 
-    public double getConsumedWater() {return appliance.getConsumedWater();}
+    public double getConsumedWater() {
+        return appliance.getConsumedWater();
+    }
 
     public String getName() {
         return appliance.getName();
@@ -113,7 +117,9 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         return this.state instanceof Active;
     }
 
-    public boolean canFixBroken(CreatureAPI creature) { return isBroken() && creature.getType().equals("Adult");}
+    public boolean canFixBroken(CreatureAPI creature) {
+        return isBroken() && creature.getType().equals("Adult");
+    }
 
     protected void breakingDownChance(double chance, CreatureAPI creatureAPI) {
         if (RandomGenerator.hasHappened(chance)) {

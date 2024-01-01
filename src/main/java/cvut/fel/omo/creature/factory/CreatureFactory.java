@@ -6,7 +6,6 @@ import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.creature.API.CreatureAPI;
 
 import java.util.Optional;
-import java.util.logging.Level;
 
 public class CreatureFactory {
     public Optional<CreatureAPI> createCreature(String type, String name) {

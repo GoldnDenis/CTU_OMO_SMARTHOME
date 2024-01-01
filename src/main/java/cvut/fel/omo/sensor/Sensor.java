@@ -3,8 +3,6 @@ package cvut.fel.omo.sensor;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.system.RandomGenerator;
 
-import java.util.logging.Level;
-
 public class Sensor {
 
     public GlobalEventDetector detector;

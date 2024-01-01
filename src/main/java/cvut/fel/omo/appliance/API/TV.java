@@ -8,8 +8,6 @@ import cvut.fel.omo.creature.API.Animal;
 import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.event.GLOBAL_EVENT;
 
-import java.util.logging.Level;
-
 public class TV extends ApplianceAPI {
 
     public TV() {
@@ -49,10 +47,8 @@ public class TV extends ApplianceAPI {
     @Override
     public void react(GLOBAL_EVENT event) {
         switch (event) {
-            case NIGHT_FELL
-                    -> this.turnOff();
-            case SUN_HAS_RISEN_UP
-                    -> this.sleep();
+            case NIGHT_FELL -> this.turnOff();
+            case SUN_HAS_RISEN_UP -> this.sleep();
         }
     }
 }

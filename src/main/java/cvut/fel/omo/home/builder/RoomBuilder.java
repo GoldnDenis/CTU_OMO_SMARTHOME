@@ -17,7 +17,7 @@ public class RoomBuilder {
     private String name;
     private ROOM_TYPE type;
 
-    private List<ApplianceAPI> appliances;
+    private final List<ApplianceAPI> appliances;
 
     public RoomBuilder() {
         appliances = new ArrayList<>();
