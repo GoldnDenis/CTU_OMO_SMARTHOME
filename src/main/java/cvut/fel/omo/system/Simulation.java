@@ -42,7 +42,7 @@ public class Simulation {
         setUpEventDetectors();
 
         for (int day = 1; day <= config.getDuration(); ++day) {
-            System.out.println("Day " + day + ")");
+            System.out.println("(" + day + ")_Day_(" + day + ")");
             for (int hour = 0; hour < 24; ++hour) {
                 System.out.println("<-> " + hour + ":00 <->");
 
