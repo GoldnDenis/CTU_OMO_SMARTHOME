@@ -5,21 +5,19 @@ import cvut.fel.omo.appliance.state.Off;
 import cvut.fel.omo.creature.API.Adult;
 import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.LocalEventListener;
-import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.event.GlobalEventAccumulator;
 import cvut.fel.omo.home.SmartHome;
 import cvut.fel.omo.report.ReportHub;
-import cvut.fel.omo.sensor.GlobalEventDetector;
 import cvut.fel.omo.sensor.GlobalEventListener;
+import cvut.fel.omo.sensor.Sensor;
 
 import java.util.List;
-import java.util.Optional;
 
 public class Simulation {
     private SmartHome home;
     private List<CreatureAPI> creatures;
 
-    private final GlobalEventDetector globalEventDetector;
+    private final Sensor sensor;
     private final ConfigReader config;
 
     private final ReportHub reportHub;
@@ -29,7 +27,7 @@ public class Simulation {
         this.config = new ConfigReader();
         this.reportHub = new ReportHub();
         this.globalEventAccumulator = new GlobalEventAccumulator();
-        this.globalEventDetector = new GlobalEventDetector();
+        this.sensor = new Sensor();
     }
 
     public void run(String configPath) {
@@ -49,12 +47,12 @@ public class Simulation {
                 System.out.println("<-> " + hour + ":00 <->");
 
                 if (hour == 6) {
-                    notifyGlobalEvent(GLOBAL_EVENT.SUN_HAS_RISEN_UP);
+                    sensor.detectSunRise();
                 }
                 if (hour == 19) {
-                    notifyGlobalEvent(GLOBAL_EVENT.NIGHT_FELL);
+                    sensor.detectNightFall();
                 }
-                generateGlobalEvent().ifPresent(this::notifyGlobalEvent);
+                sensor.tryToDetectGlobalEvent();
 
                 creatures.forEach(creatureAPI -> {
                     creatureAPI.move(home.getRooms());
@@ -101,10 +99,10 @@ public class Simulation {
                 .toList();
     }
 
-    private void setUpGlobalEventDetector() {
+    private void setUpSensor() {
         getAppliances()
                 .forEach(applianceAPI ->
-                        globalEventDetector.attach(new GlobalEventListener(applianceAPI))
+                        sensor.attach(new GlobalEventListener(applianceAPI))
                 );
     }
 
@@ -118,26 +116,8 @@ public class Simulation {
     }
 
     private void setUpEventDetectors() {
-        setUpGlobalEventDetector();
+        setUpSensor();
         setUpLocalEventDetector();
-    }
-
-    private void notifyGlobalEvent(GLOBAL_EVENT event) {
-        globalEventDetector.notifyAll(event);
-        globalEventAccumulator.accumulateGlobalEvent(event);
-    }
-
-    private Optional<GLOBAL_EVENT> generateGlobalEvent() {
-        if (RandomGenerator.hasHappened(90)) {
-            return Optional.of(GLOBAL_EVENT.ELECTRICITY_SHUT_OFF);
-        }
-        if (RandomGenerator.hasHappened(90)) {
-            return Optional.of(GLOBAL_EVENT.WATER_SHUT_OFF);
-        }
-        if (RandomGenerator.hasHappened(90)) {
-            return Optional.of(GLOBAL_EVENT.NON_SATISFYING_TEMP);
-        }
-        return Optional.empty();
     }
 
 }
