@@ -12,27 +12,28 @@ public class Adult extends CreatureAPI {
 
     @Override
     public void accept(ApplianceVisitor visitor) {
+        ApplianceAPI applianceAPI = (ApplianceAPI) visitor;
         if (this.isBusy()) {
             if (this.isRepairing() && creature.getBusyFor() == 1) {
                 creature.setRepairing(false);
-                visitor.fix();
+                applianceAPI.fix();
             }
             if (creature.getBusyFor() == 1) {
-                visitor.sleep();
+                applianceAPI.sleep();
                 creature.setCurrAppliance(null);
             }
             this.decrementBusyFor();
             return;
         }
-        if (visitor.isBroken()) {
+        if (applianceAPI.isBroken()) {
             creature.setRepairing(true);
-            creature.setBusyFor(visitor.getTimeReqToFix());
-            creature.setCurrAppliance((ApplianceAPI) visitor);
+            creature.setBusyFor(applianceAPI.getTimeReqToFix());
+            creature.setCurrAppliance(applianceAPI);
             return;
         }
-        creature.setCurrAppliance((ApplianceAPI) visitor);
-        creature.putUsageMap(((ApplianceAPI) visitor).getName());
-        creature.setBusyFor(visitor.getRequiredTime());
+        creature.setCurrAppliance(applianceAPI);
+        creature.putUsageMap(applianceAPI.getName());
+        creature.setBusyFor(applianceAPI.getRequiredTime());
         visitor.visitAdult(this);
     }
 }

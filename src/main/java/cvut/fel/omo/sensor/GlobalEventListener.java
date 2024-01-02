@@ -15,7 +15,7 @@ public class GlobalEventListener implements EventListener {
     public void update(GLOBAL_EVENT event) {
         if (event == GLOBAL_EVENT.ELECTRICITY_SHUT_OFF) {
             appliance.turnOff();
-        } else {
+        } else if (!appliance.isBroken()){
             appliance.react(event);
         }
     }

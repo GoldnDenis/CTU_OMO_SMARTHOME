@@ -1,4 +1,4 @@
-package cvut.fel.omo.system;
+package cvut.fel.omo.system.utils;
 
 import java.util.List;
 import java.util.Random;

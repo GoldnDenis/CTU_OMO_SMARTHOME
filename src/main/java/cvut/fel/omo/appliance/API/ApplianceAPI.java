@@ -6,13 +6,10 @@ import cvut.fel.omo.appliance.state.Active;
 import cvut.fel.omo.appliance.state.ApplianceState;
 import cvut.fel.omo.appliance.state.Broken;
 import cvut.fel.omo.appliance.state.Off;
-import cvut.fel.omo.creature.API.Adult;
-import cvut.fel.omo.creature.API.Animal;
-import cvut.fel.omo.creature.API.Child;
 import cvut.fel.omo.creature.API.CreatureAPI;
 import cvut.fel.omo.creature.LocalEventListener;
 import cvut.fel.omo.event.GLOBAL_EVENT;
-import cvut.fel.omo.system.RandomGenerator;
+import cvut.fel.omo.system.utils.RandomGenerator;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -35,21 +32,6 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         this.localEventDetector = new LocalEventDetector();
     }
 
-    @Override
-    public void visitAdult(Adult adult) {
-
-    }
-
-    @Override
-    public void visitChild(Child child) {
-
-    }
-
-    @Override
-    public void visitAnimal(Animal animal) {
-
-    }
-
     public void updateConsumption() {
         appliance.updateConsumption();
     }
@@ -70,9 +52,8 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         return appliance.getId();
     }
 
-    @Override
     public int getRequiredTime() {
-        return this.appliance.getRequiredTime();
+        return appliance.getRequiredTime();
     }
 
     public void changeState(ApplianceState state) {

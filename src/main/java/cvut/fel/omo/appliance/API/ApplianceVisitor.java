@@ -12,16 +12,16 @@ public interface ApplianceVisitor {
 
     void visitAnimal(Animal animal);
 
-    int getRequiredTime();
-
-    void fix();
-
-    void sleep();
-
-    boolean isBroken();
-
-//    boolean isAvailable();
-
-    int getTimeReqToFix();
+//    int getRequiredTime();
+//
+//    void fix();
+//
+//    void sleep();
+//
+//    boolean isBroken();
+//
+////    boolean isAvailable();
+//
+//    int getTimeReqToFix();
 
 }

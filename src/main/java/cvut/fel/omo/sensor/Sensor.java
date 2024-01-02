@@ -2,7 +2,7 @@ package cvut.fel.omo.sensor;
 
 import cvut.fel.omo.event.GLOBAL_EVENT;
 import cvut.fel.omo.event.GlobalEventAccumulator;
-import cvut.fel.omo.system.RandomGenerator;
+import cvut.fel.omo.system.utils.RandomGenerator;
 
 import java.util.Optional;
 

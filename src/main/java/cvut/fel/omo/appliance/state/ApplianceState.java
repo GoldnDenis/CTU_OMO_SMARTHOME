@@ -17,4 +17,5 @@ public abstract class ApplianceState {
     abstract public void turnOff();
 
     abstract public void fix();
+
 }

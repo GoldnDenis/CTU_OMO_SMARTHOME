@@ -12,20 +12,18 @@ public class Child extends CreatureAPI {
 
     @Override
     public void accept(ApplianceVisitor visitor) {
-//        if (!visitor.isAvailable()) {
-//            return;
-//        }
+        ApplianceAPI applianceAPI = (ApplianceAPI) visitor;
         if (this.isBusy()) {
             if (creature.getBusyFor() == 1) {
-                visitor.sleep();
+                applianceAPI.sleep();
                 creature.setCurrAppliance(null);
             }
             this.decrementBusyFor();
             return;
         }
-        creature.setCurrAppliance((ApplianceAPI) visitor);
-        creature.putUsageMap(((ApplianceAPI) visitor).getName());
-        creature.setBusyFor(visitor.getRequiredTime());
+        creature.setCurrAppliance(applianceAPI);
+        creature.putUsageMap(applianceAPI.getName());
+        creature.setBusyFor(applianceAPI.getRequiredTime());
         visitor.visitChild(this);
     }
 

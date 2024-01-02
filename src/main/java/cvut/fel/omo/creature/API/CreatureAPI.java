@@ -4,7 +4,7 @@ import cvut.fel.omo.appliance.API.ApplianceAPI;
 import cvut.fel.omo.appliance.API.ApplianceVisitor;
 import cvut.fel.omo.creature.Creature;
 import cvut.fel.omo.home.Room;
-import cvut.fel.omo.system.RandomGenerator;
+import cvut.fel.omo.system.utils.RandomGenerator;
 import lombok.Getter;
 
 import java.util.ArrayList;

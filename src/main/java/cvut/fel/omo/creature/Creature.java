@@ -49,17 +49,9 @@ public class Creature {
         }
     }
 
-    public int getApplianceNumInRoom() {
-        return curLocation.getAppliancesSize();
-    }
-
     public Optional<ApplianceAPI> getApplianceInCurRoomByIdx(int idx) {
         if (idx > curLocation.getAppliancesSize() || idx < 0) return Optional.empty();
         return Optional.of(curLocation.getAppliances().get(idx));
-    }
-
-    public void printId() {
-        System.out.println(this);
     }
 
     @Override
