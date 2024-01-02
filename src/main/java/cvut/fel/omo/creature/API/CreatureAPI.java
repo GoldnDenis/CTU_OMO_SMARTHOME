@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Getter
 public abstract class CreatureAPI {
+
     protected final Creature creature;
+
+    @Getter
     protected String type;
 
     public CreatureAPI(String name) {
@@ -25,7 +27,7 @@ public abstract class CreatureAPI {
 
     public void interact(List<Room> rooms) {
         if (isBusy()) {
-            accept(getCreature().getCurrAppliance());
+            accept(creature.getCurrAppliance());
             return;
         }
 

@@ -8,11 +8,11 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@Getter
 public class SmartHome {
-    private List<Room> rooms;
-    private RoomDirector director;
+
+    @Getter
+    private final List<Room> rooms;
+    private final RoomDirector director;
 
     public SmartHome() {
         this.rooms = new ArrayList<>();
@@ -30,7 +30,4 @@ public class SmartHome {
         }
     }
 
-    public int getRoomSize() {
-        return rooms.size();
-    }
 }
