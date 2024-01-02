@@ -30,6 +30,11 @@ public class Simulation {
         this.sensor = new Sensor();
     }
 
+    /**
+     * starts the simulation with a specified config file.
+     * In case none is present or the path is incorrect - a preset will be loaded
+     * @param configPath path to the configuration file
+    */
     public void run(String configPath) {
         String configFile = getConfig(configPath);
         setUpSim();
