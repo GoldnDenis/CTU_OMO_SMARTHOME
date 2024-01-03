@@ -42,7 +42,7 @@ public class RoomDirector {
                 .build();
     }
 
-    public Room Shower(RoomBuilder builder) {
+    public Room buildShower(RoomBuilder builder) {
         return builder
                 .id(counter++)
                 .addAppliance(factory.createAppliance("Smart Speaker"))

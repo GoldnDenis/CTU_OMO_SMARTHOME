@@ -29,11 +29,11 @@ public class ReportHub {
     }
 
     public void generateLocalEventReport(ApplianceAPI applianceAPI) {
-        localEventReport.generateLocalReport(applianceAPI);
+        localEventReport.generateReport(applianceAPI);
     }
 
     public void generateGlobalEventReport(GlobalEventAccumulator accumulator) {
-        globalEventReport.generateGlobalReport(accumulator);
+        globalEventReport.generateReport(accumulator);
     }
 
     public void generateHouseConfigurationReport(String configFile, ImmutableConfig config) {

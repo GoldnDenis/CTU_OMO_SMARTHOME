@@ -17,12 +17,17 @@ public class Appliance {
 
     private Map<String, Integer> breakDownMap;
 
-    public int getRequiredTime() {
-        return consumption.getRequiredTime();
-    }
-
     public void updateConsumption() {
         consumption.update();
+    }
+
+    public void putBreakDownMap(String key) {
+        if (breakDownMap.containsKey(key)) {
+            int count = breakDownMap.get(key);
+            breakDownMap.put(key, ++count);
+        } else {
+            breakDownMap.put(key, 1);
+        }
     }
 
     @Override
@@ -31,6 +36,10 @@ public class Appliance {
                 "name='" + name +
                 ", id=" + id + '\'' +
                 '}';
+    }
+
+    public int getRequiredTime() {
+        return consumption.getRequiredTime();
     }
 
     public double getConsumedElectricity() {
@@ -48,14 +57,4 @@ public class Appliance {
     public int getTimeReqToFix() {
         return manual.getTimeReqToFix();
     }
-
-    public void putBreakDownMap(String key) {
-        if (breakDownMap.containsKey(key)) {
-            int count = breakDownMap.get(key);
-            breakDownMap.put(key, ++count);
-        } else {
-            breakDownMap.put(key, 1);
-        }
-    }
-
 }

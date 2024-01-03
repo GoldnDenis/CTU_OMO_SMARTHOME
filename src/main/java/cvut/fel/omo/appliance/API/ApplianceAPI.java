@@ -36,36 +36,8 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         appliance.updateConsumption();
     }
 
-    public double getConsumedElectricity() {
-        return appliance.getConsumedElectricity();
-    }
-
-    public double getConsumedWater() {
-        return appliance.getConsumedWater();
-    }
-
-    public String getName() {
-        return appliance.getName();
-    }
-
-    public int getId() {
-        return appliance.getId();
-    }
-
-    public int getRequiredTime() {
-        return appliance.getRequiredTime();
-    }
-
     public void changeState(ApplianceState state) {
         this.state = state;
-    }
-
-    public void setConsumptionPercent(double percent) {
-        appliance.setConsumptionPercent(percent);
-    }
-
-    public String toString() {
-        return appliance.toString();
     }
 
     public void breakDown() {
@@ -90,14 +62,6 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
 
     public abstract void react(GLOBAL_EVENT event);
 
-    public boolean isBroken() {
-        return this.state instanceof Broken;
-    }
-
-    public boolean isActive() {
-        return this.state instanceof Active;
-    }
-
     public boolean canFixBroken(CreatureAPI creature) {
         return isBroken() && creature.getType().equals("Adult");
     }
@@ -109,16 +73,52 @@ public abstract class ApplianceAPI implements ApplianceVisitor {
         }
     }
 
-    public int getTimeReqToFix() {
-        return appliance.getTimeReqToFix();
-    }
-
     public void attach(LocalEventListener listener) {
         localEventDetector.attach(listener);
     }
 
     public void notifyFirstNotBusy() {
         localEventDetector.notifyFirstNotBusy(this);
+    }
+
+    public String toString() {
+        return appliance.toString();
+    }
+
+    public void setConsumptionPercent(double percent) {
+        appliance.setConsumptionPercent(percent);
+    }
+
+    public double getConsumedElectricity() {
+        return appliance.getConsumedElectricity();
+    }
+
+    public double getConsumedWater() {
+        return appliance.getConsumedWater();
+    }
+
+    public String getName() {
+        return appliance.getName();
+    }
+
+    public int getId() {
+        return appliance.getId();
+    }
+
+    public int getRequiredTime() {
+        return appliance.getRequiredTime();
+    }
+
+    public boolean isBroken() {
+        return this.state instanceof Broken;
+    }
+
+    public boolean isActive() {
+        return this.state instanceof Active;
+    }
+
+    public int getTimeReqToFix() {
+        return appliance.getTimeReqToFix();
     }
 
     public Map<String, Integer> getBreakdownMap() {

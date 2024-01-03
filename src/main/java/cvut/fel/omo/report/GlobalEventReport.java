@@ -11,7 +11,7 @@ public class GlobalEventReport extends AbstractReport {
         this.fileName = "GlobalEventReport.log";
     }
 
-    public void generateGlobalReport(GlobalEventAccumulator accumulator) {
+    public void generateReport(GlobalEventAccumulator accumulator) {
         for (Map.Entry<GLOBAL_EVENT, Integer> entry : accumulator.getOccurrenceMap().entrySet()) {
             reportList.add(entry.getKey() + " happened " + entry.getValue() + " times");
         }

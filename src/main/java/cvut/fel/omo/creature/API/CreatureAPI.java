@@ -59,7 +59,7 @@ public abstract class CreatureAPI {
         }
     }
 
-    public void doRoutineWithoutAppliance() {
+    private void doRoutineWithoutAppliance() {
         String routine = type.equals("Animal") ? doAnimalRoutine() : doHumanRoutine();
         System.out.println(getName() + routine);
     }

@@ -12,7 +12,7 @@ public class SmartHomeApplication {
     public static void main(String[] args) {
         /* todo: write your own desirable configurations */
         String configFile = ConfigGenerator.createJSON(
-                -1,
+                1,
                 List.of("Musta Adult", "Denis Child", "Danny Animal"),
                 List.of("Living Room", "Shower"));
 

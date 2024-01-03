@@ -12,7 +12,7 @@ public class LocalEventReport extends AbstractReport {
         this.fileName = "LocalEventReport.log";
     }
 
-    public void generateLocalReport(ApplianceAPI applianceAPI) {
+    public void generateReport(ApplianceAPI applianceAPI) {
         reportList.add(++counter + ") '" + applianceAPI.getName() + "', id=" + applianceAPI.getId() + " :");
         for (Map.Entry<String, Integer> entry : applianceAPI.getBreakdownMap().entrySet()) {
             reportList.add(entry.getKey() + " broke this appliance " + entry.getValue() + " times");
