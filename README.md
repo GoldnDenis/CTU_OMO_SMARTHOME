@@ -33,16 +33,16 @@ In the simulation the minimal time unit is an hour. Each hour takes places some 
 6. sensor: contains global event detector logic, i.e. sensors.
 
 ## Report logs
-- ActivityAndUsageReport - displays the activity of each creature through out the simulation, i.e. how many times each creature had used a specific types of appliances.
-- CosumptionReport - displays a resouce consumption of every appliances through out the simulation.
-- GlobalEventReport - displays how many times every posible global event had happened.
+- ActivityAndUsageReport - displays the activity of each creature throughout the simulation, i.e. how many times each creature had used a specific types of appliances.
+- ConsumptionReport - displays a resource consumption of every appliance throughout the simulation.
+- GlobalEventReport - displays how many times every possible global event had happened.
 - LocalEventReport - displays how many times each of the appliances had been broken and by whom.
 - HouseConfigurationReport - displays from which file was loaded a current configuration for the SmartHome and the configuration itself.
 
 ## Design patterns used
 
 1. Observer - for event detection and notification
-   >Classes: GlobalEventDetector, GlobalEventListener, Sensor, ApplianceAPI, LocalEventListener, CreatureAPI.
+   >Classes: GlobalEventDetector, GlobalEventListener, Sensor, ApplianceAPI, LocalEventDetector, LocalEventListener, CreatureAPI.
    
 2. Builder - for house construction
    >Classes: RoomBuilder, RoomDirector.
@@ -51,48 +51,48 @@ In the simulation the minimal time unit is an hour. Each hour takes places some 
    >States: Active, Broken, Idle and Off.
    
 5. Factory - for appliance and creature creation
-   >Classes: ApplainceFactory, CreatureFactory.
+   >Classes: ApplianceFactory, CreatureFactory.
 
 6. Facade - for incorporating only required methods from common utility Java classes
    >Classes: ConfigReader, RandomGenerator.
    
-7. Mediator - to seize unnecessary initialization and interclass communication
-   >Classes: ReportHub ( We belive it's also a facade )
+7. Mediator - to seize unnecessary initialization and inter class communication
+   >Classes: ReportHub ( We believe it's also a facade )
 
-8. Visitor - main logic for creature-appliance interaction
+8. Visitor - main logic for creature-appliance interaction. Appliances react differently to different creature types.
    >Classes: ApplianceAPI, CreatureAPI.
 
 9. Bridge - to comply with the Demeter's rule
-   >Throught the code, but especially classes: ApplianceAPI, CreatureAPI.
+   >Throughout the code, but especially classes: ApplianceAPI, CreatureAPI.
 
 10. Streams - for a more efficient and pretty iteration through lists
    >Mainly inside of Simulation
 
 11. Optional - for the sake of avoiding old and non-safe NULL
-   >Both of factory classes use it: ApplainceFactory, CreatureFactory
+   >Both of factory classes use it: ApplianceFactory, CreatureFactory
 
 12. Object Pool - pre-initialization of the object data and classes for further use in the simulation
-   >Throught the code
+   >Throughout the code
    
 ## A checklist for the project's functional requirements
-### (the requiements are in Czech)
+### (the requirements are in Czech)
 
 - [x] F1: "Entity se kterými pracujeme je dům, okno (+ venkovní žaluzie), patro v domu, senzor, zařízení (=spotřebič), osoba, auto, kolo, domácí zvíře jiného než hospodářského typu, plus libovolné další entity"
    > The SmartHome simulation consists of a House with rooms and appliances & different Creatures, like animals and people. Check out appliance, home and creature packages, [Code structure](#code-structure).
 - [x] F2: "Jednotlivá zařízení v domu mají API na ovládání. Zařízení mají stav, který lze měnit pomocí API na jeho ovládání. Akce z API jsou použitelné podle stavu zařízení. Vybraná zařízení mohou mít i obsah - lednice má jídlo, CD přehrávač má CD."
-   > All appliances in the house are devided on a data and API parts. Every interaction with them is through an API. (CreatureAPI class)
+   > All appliances in the house are divided on a data and API parts. Every interaction with them is through an API. (CreatureAPI class)
 - [x] F3: "Spotřebiče mají svojí spotřebu v aktivním stavu, idle stavu, vypnutém stavu"
    > Every appliance can be in one of 4 states: Active, Off, Idle and Broken. Depending on the state, it'll require a different amount of resources to work. All values are predefined in the enum - APPLIANCE_CONSUMP_INFO
 - [x] F4: "Jednotlivá zařízení mají API na sběr dat o tomto zařízení. O zařízeních sbíráme data jako spotřeba elektřiny, plynu, vody a funkčnost (klesá lineárně s časem)"
    > Appliances have a data object that stores all information about its consumption.
 - [x] F5: "Jednotlivé osoby a zvířata mohou provádět aktivity(akce), které mají nějaký efekt na zařízení nebo jinou osobu"
-   > The application simulates time in hours where every Creature, which is not occupied, each single hour randomly interacts with one of the available appliances in the room. Each appliance has its own logic and special interactions.
+   > The application simulates time in hours when every Creature, which is not occupied, each single hour randomly interacts with one of the available appliances in the room. Each appliance has its own logic and special interactions.
 - [x] F6: "Jednotlivá zařízení a osoby se v každém okamžiku vyskytují v jedné místnosti (pokud nesportují) a náhodně generují eventy (eventem může být důležitá informace a nebo alert)"
-   > Prety much everything that was said in F5 is also in compliance with this requirement. 
+   > Pretty much everything that was said in F5 is also in compliance with this requirement. 
 - [x] F7: "Eventy jsou přebírány a odbavovány vhodnou osobou (osobami) nebo zařízením (zařízeními)."
-   > Again, this requirement is tightly connected to F5 & F6. However in addition to them, Creatures are never dormnant. The logic is written so when there is none available appliances in the current room then the creature will change it and look for a new activity in another one. In case, there're absolutely no possible options - it'll entertain itself by training, sleeping or doing other leasures without appliance involvement.
+   > Again, this requirement is tightly connected to F5 & F6. However, in addition to them, Creatures are never dormant. The logic is written so when there is none available appliances in the current room then the creature will change it and look for a new activity in another one. In case, there are absolutely no possible options - it'll entertain itself by training, sleeping or doing other leisure without appliance involvement.
 - [x] F8 Vygenerování reportů:
-   > All report classes in project have complying names with these requiements, in exception with EventReport which is divided into GlobalEventReport and LocalEventReport
+   > All report classes in project have complying names with these requirements, in exception with EventReport which is divided into GlobalEventReport and LocalEventReport
 
   - [x]	HouseConfigurationReport: "veškerá konfigurační data domu zachovávající hieararchii - dům -> patro -> místnost -> okno -> žaluzie atd. Plus jací jsou obyvatelé domu."
       >A source and the configuration itself it being reported
@@ -106,6 +106,6 @@ In the simulation the minimal time unit is an hour. Each hour takes places some 
   - [x]	ConsumptionReport: "kolik jednotlivé spotřebiče spotřebovaly elektřiny, plynu, vody. Včetně finančního vyčíslení."
       > A class from F4 requirement is being used to form a report about all resources that were consumed during the simulation by each appliance
 - [x] F9 "Při rozbití zařízení musí obyvatel domu prozkoumat dokumentaci k zařízení - najít záruční list, projít manuál na opravu a provést nápravnou akcí (např. Oprava svépomocí, koupě nového atd.). Manuály zabírají mnoho místa a trvá dlouho než je najdete. Hint: Modelujte jako jednoduché akce ...dokumentace je přístupná jako proměnná přímo v zařízení, nicméně se dotahuje až, když je potřeba."
-   > Every appliance type has its own manual that defines an amout of time needed to fix it. An observer logic is being used to notify any capable creature, in our case any Adult, to fix it.
+   > Every appliance type has its own manual that defines an amount of time needed to fix it. An observer logic is being used to notify any capable creature, in our case any Adult, to fix it.
 - [x] F10 "Rodina je aktivní a volný čas tráví zhruba v poměru. Když není volné zařízení nebo sportovní náčiní, tak osoba čeká."
-   > Every creature either uses appliance or doing some other leasure activities, like sport. As mentioned before, we slightly reimagined this requirement so every creature has something to do every moment of the day, but functionally it can be rephrased as "an entity waits"
+   > Every creature either uses appliance or doing some other leisure activities, like sport. As mentioned before, we slightly reimagined this requirement so every creature has something to do every moment of the day, but functionally it can be rephrased as "an entity waits"
