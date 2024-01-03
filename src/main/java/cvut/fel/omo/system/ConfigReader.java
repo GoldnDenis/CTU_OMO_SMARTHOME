@@ -31,7 +31,7 @@ public class ConfigReader {
     }
 
     private ImmutableConfig getStandardConfig() {
-        int simDuration = 7;
+        int simDuration = 2;
         List<String> creatures = List.of(
                 "Musta Adult", "Denis Adult", "Jiri Adult", "Alex Adult",
                 "Daniel Child", "Honda Child",
